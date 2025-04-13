@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -14,14 +16,16 @@ public class Hoi4Country {
     private Long id;
     private String name;
 
+    @ElementCollection
     @Enumerated(EnumType.STRING)
-    private Continent continent;
+    private List<Continent> continents;
 
     @Enumerated(EnumType.STRING)
     private Ideology ideology;
 
+    @ElementCollection
     @Enumerated(EnumType.STRING)
-    private Faction historicalFaction;
+    private List<Faction> historicalFaction;
 
     private byte researchSlotsNumber;
     private boolean hasNationalFocusTree;
