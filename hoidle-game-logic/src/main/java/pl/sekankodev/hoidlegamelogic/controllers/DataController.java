@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.sekankodev.hoidlegamelogic.modelDto.Hoi4CountryDTO;
-import pl.sekankodev.hoidlegamelogic.services.IHoi4CountryService;
+import pl.sekankodev.hoidlegamelogic.services.IServiceCatalog;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import java.util.List;
 @RequestMapping("/data/")
 @RequiredArgsConstructor
 public class DataController {
-    private final IHoi4CountryService countryService;
+    private final IServiceCatalog serviceCatalog;
 
     @GetMapping("allCountries")
     public List<Hoi4CountryDTO> getAllCountries() {
-        return countryService.getHoi4Countries();
+        return serviceCatalog.getHoi4CountryService().getHoi4Countries();
     }
 }

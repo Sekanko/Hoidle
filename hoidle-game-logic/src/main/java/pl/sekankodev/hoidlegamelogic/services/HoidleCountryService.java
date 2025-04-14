@@ -14,26 +14,22 @@ public class HoidleCountryService implements IHoidleDailyCountryService{
     private final IRepositoryCatalog db;
 
     @Override
-    public HoidleDailyCountryDTO getTodaysCountry() {
-        HoidleDailyCountry todaysCountry = db.getHoidleDailyCountryRepository().findByDate(LocalDate.now());
+    public HoidleDailyCountryDTO getOrSetTodaysCountry() {
+        var todaysCountry = db.getHoidleDailyCountryRepository().findByDate(LocalDate.now());
 
         if (todaysCountry == null) {
-            return setCountryForToday();
-        } else {
-            return mapDailyCountryToDTO(todaysCountry);
+            todaysCountry = new HoidleDailyCountry();
+            todaysCountry.setDate(LocalDate.now());
+            var randomHoi4Country = db.getHoi4CountryRepository().getRandomCountry();
+
+            if (randomHoi4Country == null) {
+                throw new RuntimeException("Random hoi4 country not found");
+            }
+            todaysCountry.setCountry(randomHoi4Country);
+            db.getHoidleDailyCountryRepository().save(todaysCountry);
         }
-    }
-    @Override
-    public HoidleDailyCountryDTO setCountryForToday(){
-        var hoi4Country = db.getHoi4CountryRepository().getRandomCountry();
-        var newDailyCountry = new HoidleDailyCountry();
 
-        newDailyCountry.setCountry(hoi4Country);
-        newDailyCountry.setDate(LocalDate.now());
-
-        db.getHoidleDailyCountryRepository().save(newDailyCountry);
-        return mapDailyCountryToDTO(newDailyCountry);
-
+        return mapDailyCountryToDTO(todaysCountry);
     }
 
     private HoidleDailyCountryDTO mapDailyCountryToDTO(HoidleDailyCountry country) {
