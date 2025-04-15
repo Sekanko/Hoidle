@@ -7,6 +7,6 @@ import java.time.LocalDate;
 @Data
 @Accessors(chain = true)
 public class HoidleDailyCountryDTO {
-    private Long countryId;
+    private String countryName;
     private LocalDate date;
 }

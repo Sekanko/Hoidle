@@ -1,6 +1,5 @@
 package pl.sekankodev.hoidlegamelogic.modelDto;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import pl.sekankodev.hoidledata.model.Continent;
