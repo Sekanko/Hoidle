@@ -1,6 +1,7 @@
 package pl.sekankodev.hoidlegamelogic.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.sekankodev.hoidlegamelogic.modelDto.Colors;
@@ -17,10 +18,11 @@ public class GameController {
     private final IServiceCatalog serviceCatalog;
 
     @GetMapping("dayCountryOfTheDay")
-    public HoidleDailyCountryDTO getCountryOfTheDay() {
-        return serviceCatalog.getGameService().getOrSetTodaysCountry();
+    public ResponseEntity<HoidleDailyCountryDTO> getCountryOfTheDay() {
+        return new ResponseEntity<>(serviceCatalog.getGameService().getOrSetTodaysCountry(), HttpStatus.OK);
     }
 
+    @CrossOrigin
     @PostMapping("guessed")
     public ResponseEntity<List<Colors>> guessResult(@RequestBody Hoi4CountryDTO guessedCountry) {
 
