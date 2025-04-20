@@ -1,5 +1,8 @@
 @darkenGradient: linear-gradient(rgba(0, 0, 0, 0.3));
 @mainBackgroundColor: rgba(19, 18, 18, 0.99);
+@rowSpacing: 0.3rem;
+@columnSpacing: 0.5rem;
+
 html {
   font-size: 1em;
   line-height: 1.4;
@@ -95,7 +98,8 @@ article{
 #guesses {
   width: 55rem;
   table-layout: fixed;
-  border-spacing: 0.3rem 0.5rem;
+  border-spacing: @rowSpacing @columnSpacing;
+
 
   th {
     border-bottom: 2px solid white;
@@ -115,6 +119,10 @@ article{
   border: 1px solid black;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
 
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: appear 0.5s ease forwards;
+
   .fieldValue {
     text-align: center;
     font-size: 0.9em;
@@ -122,3 +130,23 @@ article{
   }
 }
 
+@keyframes appear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(var(--element-height, 0px));
+  }
+}
+
+.shift-down {
+  animation: slideDown 0.3s ease forwards;
+}

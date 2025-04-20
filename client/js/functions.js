@@ -1,10 +1,12 @@
-import {dataAllCountries, sendGuessDirection} from "./constants.js";
+import {dataAllCountries, guesses, sendGuessDirection} from "./constants.js";
 
 export {
   getCountries,
   sendGuess,
   filterCountriesByName,
-  prepareFieldForDisplay
+  prepareFieldForDisplay,
+  waitForAnimationEnd,
+  slideDownWholeTableAnimation
 };
 
 async function getCountries() {
@@ -63,4 +65,31 @@ function prepareFieldForDisplay(field){
   displayValue = displayValue.charAt(0).toUpperCase() + displayValue.slice(1);
 
   return displayValue;
+}
+
+function waitForAnimationEnd(element) {
+  return new Promise(resolve => {
+    element.addEventListener("animationend", resolve, { once: true });
+  });
+}
+
+function slideDownWholeTableAnimation(element, trClass) {
+
+  const rowHeight = element
+    .getElementsByClassName(trClass)[0]
+    .getBoundingClientRect()
+    .height;
+
+  const tableStyle = window.getComputedStyle(element);
+  const borderSpacing = tableStyle.getPropertyValue('border-spacing');
+  const [columnGap, rowGap] =
+    borderSpacing.split(' ')
+    .map(v => parseFloat(v));
+
+  const animationHeight = rowHeight + rowGap;
+
+  document
+    .documentElement
+    .style
+    .setProperty('--element-height', `${animationHeight}px`);
 }

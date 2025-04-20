@@ -6,9 +6,8 @@ export {
   form,
   submitEvent,
   guesses,
-  rgbaColors
+  rgbaColors,
 };
-
 
 const dataAllCountries = 'http://localhost:8081/data/allCountries';
 const sendGuessDirection = 'http://localhost:8081/game/control/guessed';

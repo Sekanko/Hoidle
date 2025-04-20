@@ -1,4 +1,10 @@
-import {filterCountriesByName, getCountries, prepareFieldForDisplay, sendGuess} from "./functions.js";
+import {
+  filterCountriesByName,
+  getCountries,
+  prepareFieldForDisplay,
+  sendGuess, slideDownWholeTableAnimation,
+  waitForAnimationEnd
+} from "./functions.js";
 import {form, guesses, input, rgbaColors, submitEvent, suggestions} from "./constants.js";
 async function main(){
   let countries = await getCountries();
@@ -6,7 +12,7 @@ async function main(){
 
   console.log(countries);
 
-//input
+  //input
   input.addEventListener('input',() => {
     suggestions.innerHTML = '';
     const query = input.value.toLowerCase();
@@ -18,7 +24,6 @@ async function main(){
     }
 
     suggestions.style.display = 'block';
-
 
 
     filteredCountries.forEach(country => {
@@ -50,6 +55,18 @@ async function main(){
     let fieldColorsAsResult = await sendGuess(guess);
     fieldColorsAsResult = fieldColorsAsResult.map(color => color.toLowerCase());
 
+    //animation
+    const tbody = document.querySelector("#guesses tbody");
+    const hasRows = tbody.querySelectorAll("tr").length !== 0;
+
+    if (hasRows) {
+      slideDownWholeTableAnimation(guesses, 'wholeGuess');
+
+      tbody.classList.add("shift-down");
+      await waitForAnimationEnd(tbody);
+      tbody.classList.remove("shift-down");
+    }
+
     const tr = document.createElement('tr');
     tr.classList.add('wholeGuess');
 
@@ -68,11 +85,9 @@ async function main(){
         fieldTd.style.background = rgbaColors[color] || color;
         fieldTd.className = 'fieldContainer';
         fieldTd.innerHTML = `<p class="fieldValue">${displayValue}</p>`;
+        fieldTd.style.animationDelay = `${index * 0.2}s`;
 
         tr.append(fieldTd);
-        var x = 1;
-
-
     });
     guesses.tBodies[0].prepend(tr);
 
