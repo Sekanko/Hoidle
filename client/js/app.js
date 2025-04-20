@@ -1,7 +1,5 @@
-import {filterCountriesByName, getCountries, sendGuess} from "./functions.js";
-import {form, guesses, input, submitEvent, suggestions} from "./constants.js";
-
-
+import {filterCountriesByName, getCountries, prepareFieldForDisplay, sendGuess} from "./functions.js";
+import {form, guesses, input, rgbaColors, submitEvent, suggestions} from "./constants.js";
 async function main(){
   let countries = await getCountries();
   let guess;
@@ -12,17 +10,20 @@ async function main(){
   input.addEventListener('input',() => {
     suggestions.innerHTML = '';
     const query = input.value.toLowerCase();
+    const filteredCountries = filterCountriesByName(query, countries);
 
-    if (query.length === 0){
+    if (query.length === 0 || filteredCountries.length === 0) {
+      suggestions.style.display = 'none';
       return;
     }
 
-    const filteredCountries = filterCountriesByName(query, countries);
+    suggestions.style.display = 'block';
+
 
 
     filteredCountries.forEach(country => {
       const li = document.createElement('li');
-      li.innerHTML = `<h2>${country.name}</h2>`;
+      li.innerHTML = `<p>${country.name}</p>`;
 
       li.addEventListener('click',() => {
 
@@ -31,6 +32,7 @@ async function main(){
         guess = country;
         form.dispatchEvent(submitEvent);
         input.value = '';
+        suggestions.style.display = 'none';
       });
         suggestions.append(li);
     });
@@ -48,21 +50,33 @@ async function main(){
     let fieldColorsAsResult = await sendGuess(guess);
     fieldColorsAsResult = fieldColorsAsResult.map(color => color.toLowerCase());
 
-    const wholeGuessContainer = document.createElement('div');
-    wholeGuessContainer.style.display = 'flex';
+    const tr = document.createElement('tr');
+    tr.classList.add('wholeGuess');
 
-    Object.entries(guess).forEach((field, index) => {
-      const fieldDiv = document.createElement('div')
-      const color = fieldColorsAsResult[index];
-      const fieldValue = field[1];
-      fieldDiv.style.background = color;
-      fieldDiv.className = 'fieldContainer'
-      fieldDiv.innerHTML = `<p>${fieldValue}</p>`
-      wholeGuessContainer.append(fieldDiv);
+    Object.entries(guess)
+      .forEach((field, index) => {
+        const fieldTd = document.createElement('td')
+        const color = fieldColorsAsResult[index];
+        let displayValue = field[1];
+
+        if (typeof displayValue === "boolean"){
+          displayValue = displayValue ? "Yes" : "No";
+        } else if (field[0] !== "name"){
+          displayValue = prepareFieldForDisplay(displayValue);
+        }
+
+        fieldTd.style.background = rgbaColors[color] || color;
+        fieldTd.className = 'fieldContainer';
+        fieldTd.innerHTML = `<p class="fieldValue">${displayValue}</p>`;
+
+        tr.append(fieldTd);
+        var x = 1;
+
+
     });
-    guesses.append(wholeGuessContainer);
+    guesses.tBodies[0].prepend(tr);
 
-    countries = countries.filter(country => country !== guess);
+    // countries = countries.filter(country => country !== guess);
 
     if (fieldColorsAsResult.every(color => color === "green")){
       console.log("You won");

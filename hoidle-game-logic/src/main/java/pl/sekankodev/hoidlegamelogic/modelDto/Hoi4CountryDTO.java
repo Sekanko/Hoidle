@@ -1,5 +1,6 @@
 package pl.sekankodev.hoidlegamelogic.modelDto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import pl.sekankodev.hoidledata.model.Continent;
