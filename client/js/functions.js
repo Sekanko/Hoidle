@@ -73,14 +73,21 @@ function waitForAnimationEnd(element) {
   });
 }
 
-function slideDownWholeTableAnimation(element, trClass) {
+function slideDownWholeTableAnimation(elementToMove, elementToGetHeightFrom, isClassName= false) {
+  let rowHeight;
+  if (isClassName) {
+      rowHeight = elementToMove
+        .getElementsByClassName(elementToGetHeightFrom)[0]
+        .getBoundingClientRect()
+        .height;
+  } else {
+      rowHeight = elementToMove
+        .getElementsByTagName(elementToGetHeightFrom)[0]
+        .getBoundingClientRect()
+        .height;
+  }
 
-  const rowHeight = element
-    .getElementsByClassName(trClass)[0]
-    .getBoundingClientRect()
-    .height;
-
-  const tableStyle = window.getComputedStyle(element);
+  const tableStyle = window.getComputedStyle(elementToMove);
   const borderSpacing = tableStyle.getPropertyValue('border-spacing');
   const [columnGap, rowGap] =
     borderSpacing.split(' ')
