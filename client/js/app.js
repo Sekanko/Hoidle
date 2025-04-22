@@ -123,7 +123,6 @@ async function main(){
       div.classList.add('appear');
       div.style.height = `${finalDivHeight}px`;
       div.style.width = `40%`;
-      // div.style.marginBottom = `${finalDivHeight*0.2}`
       div.innerHTML =
         `<p>Congratulations!</p>
          <p>You have guessed correct country!</p>

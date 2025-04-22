@@ -58,18 +58,42 @@ article{
   align-items: center;
   justify-content: center;
 
+  label {
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+
 
   #inputSuggestionsContainer{
     position: relative;
 
     #inputSubmitContainer{
       #submitButton{
+        background: linear-gradient(#3C421A, #636c20, #3C421A);
+        padding: 0.2rem;
+        border-radius: 0.2rem;
+        text-align: center;
+        color: white;
+        border: 1px solid silver;
+        box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.13);
+
+        &:hover{
+          filter: brightness(0.8);
+        }
+
       }
       #guessInput{
         background: @mainBackgroundColor;
         color: white;
         border: 1px solid lighten(@mainBackgroundColor, 35%);
         padding: 0.2rem;
+        box-shadow: 0 0 2px 1px rgba(75, 83, 32, 0.67);
+
+        &:focus{
+          outline: none;
+          box-sizing: border-box;
+          filter: brightness(1.2);
+        }
       }
 
     }
