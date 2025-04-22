@@ -1,9 +1,10 @@
-import {form, guesses, input, submitEvent, suggestions} from "./common/constants.js";
+import {form, guesses, input, submitEvent} from "./common/constants.js";
 import {getCountries, sendGuess} from "./api/data.js";
 import {createGuessRow, slideDownWholeTableAnimation} from "./dom/dom.js";
 import {waitForAnimationEnd} from "./functions/promises.js";
 import {suggestedCountry} from "./dom/suggestions.js";
 import {winFunctionality} from "./dom/win.js";
+import {filterCountriesByName} from "./functions/prepareData.js";
 
 async function main(){
   let countries = await getCountries();
@@ -13,18 +14,26 @@ async function main(){
   console.log(countries);
 
   input.addEventListener('input',async () => {
+
     guess = await suggestedCountry(countries);
 
     if (guess) {
       form.dispatchEvent(submitEvent);
     }
-    console.log(guess);
   });
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    form.reset();
-    //TODO: submit button and "enter" key as working submit options
+
+    const inputValue = input.value.toLowerCase().trim();
+
+    if (inputValue !== ""){
+      const firstSuggestion = await document.querySelector('li p');
+
+      if (firstSuggestion !== null && !firstSuggestion.classList.contains('error')) {
+        await firstSuggestion.click();
+      }
+    }
 
     if (!countries.includes(guess)){
       return;
@@ -54,6 +63,8 @@ async function main(){
       await winFunctionality();
     }
   });
+
+  form.reset();
 }
 
 main();

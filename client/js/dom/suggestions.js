@@ -6,18 +6,25 @@ export function suggestedCountry(countries) {
   const query = input.value.toLowerCase();
   const filteredCountries = filterCountriesByName(query, countries);
 
-  if (query.length === 0 || filteredCountries.length === 0) {
+  if (query.length === 0) {
     suggestions.style.display = 'none';
     return Promise.resolve(null);
   }
   suggestions.style.display = 'block';
+
+  if (filteredCountries.length === 0){
+    const li = document.createElement("li");
+    li.innerHTML = `<p class="error">There's no such country</p>`;
+    suggestions.appendChild(li);
+    return Promise.resolve(null);
+  }
 
   return new Promise(resolve => {
     filteredCountries.forEach(country => {
       const li = document.createElement('li');
       li.innerHTML = `<p>${country.name}</p>`;
       li.addEventListener('click', () => {
-        input.value = country.name;
+        input.value = '';
         suggestions.innerHTML = '';
         suggestions.style.display = 'none';
         resolve(country);
