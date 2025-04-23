@@ -1,6 +1,5 @@
 package pl.sekankodev.hoidlegamelogic.modelDto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import pl.sekankodev.hoidledata.model.Continent;
@@ -15,6 +14,7 @@ public class Hoi4CountryDTO {
     private List<Continent> continents;
     private Ideology ideology;
     private List<Faction> historicalFaction;
+    private List<String> formableNation;
     private byte researchSlotsNumber;
     private boolean hasNationalFocusTree;
     private boolean hasAccessToTheSea;

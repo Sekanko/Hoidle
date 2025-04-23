@@ -27,6 +27,9 @@ public class Hoi4Country {
     @Enumerated(EnumType.STRING)
     private List<Faction> historicalFaction;
 
+    @ElementCollection
+    private List<String> formableNations;
+
     private byte researchSlotsNumber;
     private boolean hasNationalFocusTree;
     private boolean hasAccessToTheSea;

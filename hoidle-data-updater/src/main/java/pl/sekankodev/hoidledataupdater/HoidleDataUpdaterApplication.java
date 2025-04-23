@@ -1,11 +1,13 @@
-package pl.sekankodev.hoidledata;
+package pl.sekankodev.hoidledataupdater;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HoidleDataApplication {
+public class HoidleDataUpdaterApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(HoidleDataApplication.class, args);
+        SpringApplication.run(HoidleDataUpdaterApplication.class, args);
     }
+
 }

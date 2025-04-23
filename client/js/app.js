@@ -4,7 +4,6 @@ import {createGuessRow, slideDownWholeTableAnimation} from "./dom/dom.js";
 import {waitForAnimationEnd} from "./functions/promises.js";
 import {suggestedCountry} from "./dom/suggestions.js";
 import {winFunctionality} from "./dom/win.js";
-import {filterCountriesByName} from "./functions/prepareData.js";
 
 async function main(){
   let countries = await getCountries();

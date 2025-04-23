@@ -2,3 +2,4 @@ rootProject.name = 'Hoidle'
 
 include('hoidle-data')
 include('hoidle-game-logic')
+include('hoidle-data-updater')

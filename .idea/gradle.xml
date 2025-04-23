@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/hoidle-data" />
+            <option value="$PROJECT_DIR$/hoidle-data-updater" />
             <option value="$PROJECT_DIR$/hoidle-game-logic" />
           </set>
         </option>
@@ -19,6 +20,15 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/hoidle-data" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/hoidle-data-updater" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/hoidle-data" />
+            <option value="$PROJECT_DIR$/hoidle-data-updater" />
           </set>
         </option>
       </GradleProjectSettings>
