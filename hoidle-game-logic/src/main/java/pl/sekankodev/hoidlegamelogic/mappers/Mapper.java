@@ -15,11 +15,11 @@ public class Mapper {
                 .setName(country.getName())
                 .setContinents(country.getContinents())
                 .setIdeology(country.getIdeology())
-                .setHistoricalFaction(country.getHistoricalFaction())
+                .setHistoricalFaction(country.getHistoricalFactions())
                 .setResearchSlotsNumber(country.getResearchSlotsNumber())
-                .setHasNationalFocusTree(country.isHasNationalFocusTree())
-                .setHasAccessToTheSea(country.isHasAccessToTheSea())
-                .setHasResearchedTrain(country.isHasResearchedTrain());
+                .setNationalFocusTree(country.isNationalFocusTree())
+                .setAccessToTheSea(country.isAccessToTheSea())
+                .setResearchedTrain(country.isResearchedTrain());
     }
 
     public static HoidleDailyCountryDTO mapHoidleDailyCountry(HoidleDailyCountry country) {

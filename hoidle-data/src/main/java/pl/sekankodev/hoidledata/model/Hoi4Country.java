@@ -3,35 +3,36 @@ package pl.sekankodev.hoidledata.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@Accessors(chain = true)
 public class Hoi4Country {
     @Id
     // GeneratedValue will be used in the future
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
-    @ElementCollection
-    @Enumerated(EnumType.STRING)
-    private List<Continent> continents;
-
     @Enumerated(EnumType.STRING)
     private Ideology ideology;
 
     @ElementCollection
     @Enumerated(EnumType.STRING)
-    private List<Faction> historicalFaction;
+    private List<Continent> continents;
+
+    @ElementCollection
+    @Enumerated(EnumType.STRING)
+    private List<Faction> historicalFactions;
 
     @ElementCollection
     private List<String> formableNations;
 
     private byte researchSlotsNumber;
-    private boolean hasNationalFocusTree;
-    private boolean hasAccessToTheSea;
-    private boolean hasResearchedTrain;
+    private boolean nationalFocusTree;
+    private boolean accessToTheSea;
+    private boolean researchedTrain;
 }

@@ -4,8 +4,6 @@ import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvCustomBindByName;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import pl.sekankodev.hoidledata.model.Continent;
-import pl.sekankodev.hoidledata.model.Faction;
 import pl.sekankodev.hoidledata.model.Ideology;
 import pl.sekankodev.hoidledataupdater.parsers.converters.ToListConverter;
 
@@ -17,19 +15,30 @@ public class Hoi4CountryDTO {
     @CsvBindByName(column = "Name")
     private String name;
     @CsvBindByName(column = "Continents")
-    private List<Continent> continents;
+    private List<String> continents;
     @CsvBindByName(column = "Ideology")
-    private Ideology ideology;
+    private String ideology;
     @CsvCustomBindByName(column = "Historical faction", converter = ToListConverter.class)
-    private List<Faction> historicalFaction;
+    private List<String> historicalFactions;
     @CsvCustomBindByName(column = "Formable nation", converter = ToListConverter.class)
-    private List<String> formableNation;
+    private List<String> formableNations;
     @CsvBindByName(column = "Research slots")
     private byte researchSlotsNumber;
     @CsvBindByName(column = "National focus tree")
-    private boolean hasNationalFocusTree;
+    private boolean nationalFocusTree;
     @CsvBindByName(column = "Access to the see")
-    private boolean hasAccessToTheSea;
+    private boolean accessToTheSea;
     @CsvBindByName(column = "Train researched")
-    private boolean hasResearchedTrain;
+    private boolean researchedTrain;
+
+    public boolean hasResearchedTrain() {
+        return researchedTrain;
+    }
+
+    public boolean hasAccessToTheSea() {
+        return accessToTheSea;
+    }
+    public boolean hasNationalFocusTree() {
+        return nationalFocusTree;
+    }
 }

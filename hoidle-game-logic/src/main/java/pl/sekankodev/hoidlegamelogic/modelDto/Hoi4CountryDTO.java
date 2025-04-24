@@ -16,7 +16,7 @@ public class Hoi4CountryDTO {
     private List<Faction> historicalFaction;
     private List<String> formableNation;
     private byte researchSlotsNumber;
-    private boolean hasNationalFocusTree;
-    private boolean hasAccessToTheSea;
-    private boolean hasResearchedTrain;
+    private boolean nationalFocusTree;
+    private boolean accessToTheSea;
+    private boolean researchedTrain;
 }
