@@ -4,7 +4,6 @@ import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvCustomBindByName;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import pl.sekankodev.hoidledata.model.Ideology;
 import pl.sekankodev.hoidledataupdater.parsers.converters.ToListConverter;
 
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
 public class Hoi4CountryDTO {
     @CsvBindByName(column = "Name")
     private String name;
-    @CsvBindByName(column = "Continents")
+    @CsvCustomBindByName(column = "Continents", converter = ToListConverter.class)
     private List<String> continents;
     @CsvBindByName(column = "Ideology")
     private String ideology;

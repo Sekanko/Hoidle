@@ -13,8 +13,7 @@ import java.util.List;
 @Accessors(chain = true)
 public class Hoi4Country {
     @Id
-    // GeneratedValue will be used in the future
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @Enumerated(EnumType.STRING)

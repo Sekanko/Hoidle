@@ -1,6 +1,5 @@
-import {form, input, rgbaColors, submitEvent, suggestions} from "../common/constants.js";
-import {filterCountriesByName, prepareFieldForDisplay} from "../functions/prepareData.js";
-import {waitForAnimationEnd} from "../functions/promises.js";
+import {rgbaColors} from "../common/constants.js";
+import {prepareFieldForDisplay} from "../functions/prepareData.js";
 
 export {
   slideDownWholeTableAnimation,

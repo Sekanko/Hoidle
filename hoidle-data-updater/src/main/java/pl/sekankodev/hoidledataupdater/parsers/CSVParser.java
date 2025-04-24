@@ -1,8 +1,5 @@
 package pl.sekankodev.hoidledataupdater.parsers;
 
-import com.opencsv.CSVParserBuilder;
-import com.opencsv.CSVReader;
-import com.opencsv.CSVReaderBuilder;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.springframework.stereotype.Component;
@@ -18,7 +15,8 @@ import java.util.List;
 public class CSVParser implements ICSVParser{
     @Override
     public List<Hoi4CountryDTO> parseCountriesFromCSV(String fileName) {
-        Path path = Paths.get("main/resources/" + fileName);
+        Path path = Paths.get("hoidle-data-updater/src/main/resources/" + fileName);
+        System.out.println(path);
 
         try(Reader reader = Files.newBufferedReader(path)) {
             CsvToBean<Hoi4CountryDTO> csvToBean = new CsvToBeanBuilder<Hoi4CountryDTO>(reader)

@@ -19,7 +19,8 @@ public class Mapper {
                 .setResearchSlotsNumber(country.getResearchSlotsNumber())
                 .setNationalFocusTree(country.isNationalFocusTree())
                 .setAccessToTheSea(country.isAccessToTheSea())
-                .setResearchedTrain(country.isResearchedTrain());
+                .setResearchedTrain(country.isResearchedTrain())
+                .setFormableNation(country.getFormableNations());
     }
 
     public static HoidleDailyCountryDTO mapHoidleDailyCountry(HoidleDailyCountry country) {

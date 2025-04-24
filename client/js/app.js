@@ -55,7 +55,7 @@ async function main(){
     const row = createGuessRow(guess, fieldColorsAsResult);
     guesses.tBodies[0].prepend(row);
 
-    // countries = countries.filter(country => country !== guess);
+    countries = countries.filter(country => country !== guess);
     guess = ''
 
     if (fieldColorsAsResult.every(color => color === "green")){

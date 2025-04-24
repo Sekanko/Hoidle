@@ -38,6 +38,6 @@ public class CountryMapper implements IMap<Hoi4CountryDTO, Hoi4Country> {
     }
 
     private String prepareToEnumValue(String input){
-        return input.trim().toUpperCase().replace(" ", "_");
+        return input.trim().toUpperCase().replaceAll(" |-", "_");
     }
 }

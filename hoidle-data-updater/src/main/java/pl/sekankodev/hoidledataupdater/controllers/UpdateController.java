@@ -15,7 +15,8 @@ import pl.sekankodev.hoidledataupdater.services.UpdateService;
 public class UpdateController {
     final UpdateService updateService;
     @PostMapping("from/file/csv/{fileName}")
-    ResponseEntity<Integer> loadCountriesFromFile(@PathVariable String fileName) {
+    ResponseEntity<Void> loadCountriesFromFile(@PathVariable String fileName) {
+        updateService.UpdateCountryDatabaseFromCSVFile(fileName);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
