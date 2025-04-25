@@ -1,9 +1,10 @@
 import {form, guesses, input, submitEvent} from "./common/constants.js";
 import {getCountries, sendGuess} from "./api/data.js";
-import {createGuessRow, slideDownWholeTableAnimation} from "./dom/dom.js";
+import {createGuessRow, fitInText, slideDownWholeTableAnimation} from "./dom/dom.js";
 import {waitForAnimationEnd} from "./functions/promises.js";
 import {suggestedCountry} from "./dom/suggestions.js";
 import {winFunctionality} from "./dom/win.js";
+import fitty from 'https://cdn.skypack.dev/fitty';
 
 async function main(){
   let countries = await getCountries();
@@ -53,7 +54,14 @@ async function main(){
     }
 
     const row = createGuessRow(guess, fieldColorsAsResult);
+
     guesses.tBodies[0].prepend(row);
+    const elements = await fitty(".fieldValue",{
+      maxSize: 18,
+      minSize: 10,
+      multiLine: true
+    });
+
 
     countries = countries.filter(country => country !== guess);
     guess = ''

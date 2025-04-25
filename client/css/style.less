@@ -144,26 +144,28 @@ article{
     padding-bottom: 0.8rem;
   }
 
-  td {
-    width: 100%;
-    height: 100%;
+  .fieldContainer {
+    margin-top: 20px;
+    border: 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+    animation: appear 0.5s ease forwards;
+    opacity: 0;
     border-radius: 0.3rem;
+
+    .fieldValue {
+      vertical-align: middle;
+      text-align: center;
+    }
   }
 }
 
-.fieldContainer {
-  margin-top: 20px;
-  border: 1px solid black;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
-  animation: appear 0.5s ease forwards;
-  opacity: 0;
+.centerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
 
-
-  .fieldValue {
-    text-align: center;
-    font-size: 0.9em;
-    padding: 1px;
-  }
 }
 
 .winInformation{
@@ -175,7 +177,6 @@ article{
   border: 2px solid rgba(161, 147, 101, 0.95);
   p {
     text-align: center;
-
   }
 }
 

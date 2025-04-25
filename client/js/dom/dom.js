@@ -1,9 +1,12 @@
 import {rgbaColors} from "../common/constants.js";
 import {prepareFieldForDisplay} from "../functions/prepareData.js";
+import fitty from 'https://cdn.skypack.dev/fitty';
+
 
 export {
   slideDownWholeTableAnimation,
   createGuessRow,
+  fitInText,
 }
 
 function slideDownWholeTableAnimation(elementToMove, elementToGetHeightFrom, isClassName= false) {
@@ -52,7 +55,14 @@ function createGuessRow(guess, colors) {
 
       fieldTd.style.background = rgbaColors[color] || color;
       fieldTd.className = 'fieldContainer';
-      fieldTd.innerHTML = `<p class="fieldValue">${displayValue}</p>`;
+      const cont = document.createElement('div');
+      cont.className = 'centerContainer';
+      const text = document.createElement('span');
+      text.innerHTML = displayValue;
+      text.className = 'fieldValue';
+      cont.append(text);
+      fieldTd.append(cont);
+
       fieldTd.style.animationDelay = `${index * 0.2}s`;
 
       tr.append(fieldTd);
@@ -61,3 +71,18 @@ function createGuessRow(guess, colors) {
   return tr;
 }
 
+function fitInText(el, minFont = 8, maxFont = 36) {
+  let fontSize = maxFont;
+  el.style.fontSize = fontSize + "px";
+  el.style.whiteSpace = 'nowrap';
+
+  console.log(el)
+  console.log(el.textContent);
+  console.log(el.width);
+
+
+  while (el.scrollWidth > el.clientWidth && fontSize > minFont) {
+    fontSize--;
+    el.style.fontSize = fontSize + "px";
+  }
+}

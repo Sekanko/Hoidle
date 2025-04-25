@@ -16,12 +16,20 @@ function prepareFieldForDisplay(field){
   let displayValue = field;
 
   if (Array.isArray(displayValue)) {
-    displayValue = displayValue.join(",</br>");
+    displayValue = displayValue.map(v => prepareValue(v));
+
+    displayValue = displayValue.join(", ");
+  } else {
+    displayValue = prepareValue(displayValue);
   }
 
-  displayValue = String(displayValue);
-  displayValue = displayValue.trim().replaceAll('_',' ').toLowerCase();
-  displayValue = displayValue.charAt(0).toUpperCase() + displayValue.slice(1);
-
   return displayValue;
+}
+
+
+function prepareValue(value){
+  let returnValue = String(value);
+  returnValue = returnValue.trim().replaceAll('_',' ').toLowerCase();
+  returnValue = returnValue.charAt(0).toUpperCase() + returnValue.slice(1);
+  return returnValue;
 }
