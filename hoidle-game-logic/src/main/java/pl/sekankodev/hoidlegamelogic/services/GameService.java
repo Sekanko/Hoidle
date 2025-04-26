@@ -2,8 +2,14 @@ package pl.sekankodev.hoidlegamelogic.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.sekankodev.hoidledata.data_exceptions.CountryNotFoundException;
+import pl.sekankodev.hoidledata.data_exceptions.GenericDbException;
+import pl.sekankodev.hoidledata.data_exceptions.NoDrawResultException;
+import pl.sekankodev.hoidledata.model.Hoi4Country;
 import pl.sekankodev.hoidledata.model.HoidleDailyCountry;
 import pl.sekankodev.hoidledata.repositories.IRepositoryCatalog;
+import pl.sekankodev.hoidlegamelogic.exceptions.CheckingGuessFailedException;
+import pl.sekankodev.hoidlegamelogic.exceptions.ObjectFieldIsNullException;
 import pl.sekankodev.hoidlegamelogic.mappers.Mapper;
 import pl.sekankodev.hoidlegamelogic.modelDto.Colors;
 import pl.sekankodev.hoidlegamelogic.modelDto.Hoi4CountryDTO;
@@ -22,15 +28,20 @@ public class GameService implements IGameService {
     @Override
     public List<Colors> guessResult(Hoi4CountryDTO guessedCountry) {
        String todaysCountryName = getOrSetTodaysCountry().getCountryName();
+
        var fields = Hoi4CountryDTO.class.getDeclaredFields();
 
        if (guessedCountry.getName().equals(todaysCountryName)){
            return Collections.nCopies(fields.length,Colors.GREEN);
        }
 
-       var todaysCountry = Mapper.mapCountry(
-               db.getHoi4CountryRepository().findByName(todaysCountryName)
-       );
+       Hoi4Country todaysCountry = db.getHoi4CountryRepository().findByName(todaysCountryName);
+
+       if (todaysCountry == null){
+           throw new CountryNotFoundException("Today's country not found");
+       }
+
+       Hoi4CountryDTO todaysCountryDto = Mapper.mapCountry(todaysCountry);
        
        List<Colors> result = new ArrayList<>();
 
@@ -39,7 +50,11 @@ public class GameService implements IGameService {
                field.setAccessible(true);
 
                var guessedCountryField = field.get(guessedCountry);
-               var hoi4CountryField = field.get(todaysCountry);
+               var hoi4CountryField = field.get(todaysCountryDto);
+
+               if (guessedCountryField == null || hoi4CountryField == null){
+                   throw new ObjectFieldIsNullException(field.getName());
+               }
                
                if(guessedCountryField.equals(hoi4CountryField)){
                    result.add(Colors.GREEN);
@@ -63,7 +78,7 @@ public class GameService implements IGameService {
            }
            return result;
        } catch (Exception e) {
-           throw new RuntimeException(e);
+           throw new CheckingGuessFailedException();
        }
     }
 
@@ -77,10 +92,16 @@ public class GameService implements IGameService {
             var randomHoi4Country = db.getHoi4CountryRepository().getRandomCountry();
 
             if (randomHoi4Country == null) {
-                throw new RuntimeException("Random hoi4 country not found");
+                throw new NoDrawResultException();
             }
+
             todaysCountry.setCountry(randomHoi4Country);
-            db.getHoidleDailyCountryRepository().save(todaysCountry);
+
+            try {
+                db.getHoidleDailyCountryRepository().save(todaysCountry);
+            } catch (Exception e) {
+                throw new GenericDbException();
+            }
         }
 
         return Mapper.mapHoidleDailyCountry(todaysCountry);

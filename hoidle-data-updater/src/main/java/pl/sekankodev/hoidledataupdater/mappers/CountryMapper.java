@@ -6,6 +6,7 @@ import pl.sekankodev.hoidledata.model.Faction;
 import pl.sekankodev.hoidledata.model.Hoi4Country;
 import pl.sekankodev.hoidledata.model.Ideology;
 import pl.sekankodev.hoidledataupdater.contract.Hoi4CountryDTO;
+import pl.sekankodev.hoidledataupdater.update_exceptions.MappingToEnumFailedException;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class CountryMapper implements IMap<Hoi4CountryDTO, Hoi4Country> {
                     try {
                         return Enum.valueOf(enumType, prepareToEnumValue(el));
                     } catch (Exception e){
-                        throw new RuntimeException(e);
+                        throw new MappingToEnumFailedException();
                     }
                 })
                 .toList();

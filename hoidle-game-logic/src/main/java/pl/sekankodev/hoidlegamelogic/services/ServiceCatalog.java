@@ -9,5 +9,4 @@ import org.springframework.stereotype.Service;
 public class ServiceCatalog implements IServiceCatalog {
     private final IHoi4CountryService hoi4CountryService;
     private final IGameService gameService;
-
 }

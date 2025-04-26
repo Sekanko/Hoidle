@@ -1,6 +1,6 @@
 import {form, guesses, input, submitEvent} from "./common/constants.js";
 import {getCountries, sendGuess} from "./api/data.js";
-import {createGuessRow, fitInText, slideDownWholeTableAnimation} from "./dom/dom.js";
+import {createGuessRow, slideDownWholeTableAnimation} from "./dom/dom.js";
 import {waitForAnimationEnd} from "./functions/promises.js";
 import {suggestedCountry} from "./dom/suggestions.js";
 import {winFunctionality} from "./dom/win.js";

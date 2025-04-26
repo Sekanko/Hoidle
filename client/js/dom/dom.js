@@ -1,6 +1,5 @@
 import {rgbaColors} from "../common/constants.js";
 import {prepareFieldForDisplay} from "../functions/prepareData.js";
-import fitty from 'https://cdn.skypack.dev/fitty';
 
 
 export {

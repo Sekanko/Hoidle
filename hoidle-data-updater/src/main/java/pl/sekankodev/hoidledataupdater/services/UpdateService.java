@@ -2,6 +2,7 @@ package pl.sekankodev.hoidledataupdater.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.sekankodev.hoidledata.data_exceptions.GenericDbException;
 import pl.sekankodev.hoidledata.model.Hoi4Country;
 import pl.sekankodev.hoidledata.repositories.IRepositoryCatalog;
 import pl.sekankodev.hoidledataupdater.contract.Hoi4CountryDTO;
@@ -30,6 +31,10 @@ public class UpdateService {
                 })
                 .toList();
 
-        db.getHoi4CountryRepository().saveAll(countriesAsEntities);
+        try{
+            db.getHoi4CountryRepository().saveAll(countriesAsEntities);
+        } catch (Exception e){
+            throw new GenericDbException();
+        }
     }
 }
