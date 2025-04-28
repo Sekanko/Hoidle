@@ -17,7 +17,7 @@ public class HoidleExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(value = {GenericDbException.class})
-    public ResponseEntity<Object> GenericDbException(RuntimeException ex) {
+    public ResponseEntity<Object> handleGenericDbException(RuntimeException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
