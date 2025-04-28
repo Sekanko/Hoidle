@@ -27,13 +27,13 @@ public class GameServiceTest {
 
     @BeforeEach
     public void setUp() {
-        db = Mockito.mock(IRepositoryCatalog.class);
-        gameService = new GameService(db);
+        this.db = Mockito.mock(IRepositoryCatalog.class);
+        this.gameService = new GameService(db);
 
         HoidleDailyCountryRepository HoidleDailyRepo = mock(HoidleDailyCountryRepository.class);
-        when(db.getHoidleDailyCountryRepository()).thenReturn(HoidleDailyRepo);
+        when(this.db.getHoidleDailyCountryRepository()).thenReturn(HoidleDailyRepo);
         Hoi4CountryRepository Hoi4CountryRepo = mock(Hoi4CountryRepository.class);
-        when(db.getHoi4CountryRepository()).thenReturn(Hoi4CountryRepo);
+        when(this.db.getHoi4CountryRepository()).thenReturn(Hoi4CountryRepo);
     }
 
     @Test

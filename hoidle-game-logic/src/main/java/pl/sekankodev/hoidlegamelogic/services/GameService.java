@@ -106,6 +106,4 @@ public class GameService implements IGameService {
 
         return Mapper.mapHoidleDailyCountry(todaysCountry);
     }
-
-
 }
