@@ -1,5 +1,6 @@
 import {form} from "../common/constants.js";
-import {waitForAnimationEnd} from "../functions/promises.js";
+import {waitForAnimationEnd} from "../functions/waitForAnimation.js";
+import {errorProcedure} from "./error.js";
 
 export async function winFunctionality() {
   let allElementsInForm = Array.from(form.querySelectorAll("*"));
@@ -7,7 +8,7 @@ export async function winFunctionality() {
 
   allElementsInForm.forEach(element => {
     element.classList.add('hide');
-  })
+  });
 
   const article = document.querySelector("article");
   const articleStyles = getComputedStyle(article);
@@ -22,7 +23,7 @@ export async function winFunctionality() {
       element.remove();
       continue;
     }
-    await waitForAnimationEnd(element);
+    await waitForAnimationEnd(element).catch(error => errorProcedure(error));
     element.remove();
   }
 
@@ -33,7 +34,7 @@ export async function winFunctionality() {
   div.style.width = `40%`;
   div.innerHTML =
     `<p>Congratulations!</p>
-         <p>You have guessed correct country!</p>
+         <p>You have guessed the correct country!</p>
         `;
   article.style.marginTop = `${finalArticleTopMargin}px`;
   form.appendChild(div);

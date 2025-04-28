@@ -5,7 +5,6 @@ import {prepareFieldForDisplay} from "../functions/prepareData.js";
 export {
   slideDownWholeTableAnimation,
   createGuessRow,
-  fitInText,
 }
 
 function slideDownWholeTableAnimation(elementToMove, elementToGetHeightFrom, isClassName= false) {
@@ -68,20 +67,4 @@ function createGuessRow(guess, colors) {
     });
 
   return tr;
-}
-
-function fitInText(el, minFont = 8, maxFont = 36) {
-  let fontSize = maxFont;
-  el.style.fontSize = fontSize + "px";
-  el.style.whiteSpace = 'nowrap';
-
-  console.log(el)
-  console.log(el.textContent);
-  console.log(el.width);
-
-
-  while (el.scrollWidth > el.clientWidth && fontSize > minFont) {
-    fontSize--;
-    el.style.fontSize = fontSize + "px";
-  }
 }

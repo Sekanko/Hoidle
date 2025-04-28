@@ -14,7 +14,7 @@ export function suggestedCountry(countries) {
 
   if (filteredCountries.length === 0){
     const li = document.createElement("li");
-    li.innerHTML = `<p class="error">There's no such country</p>`;
+    li.innerHTML = `<p class="nsc-error">There's no such country</p>`;
     suggestions.appendChild(li);
     return Promise.resolve(null);
   }

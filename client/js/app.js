@@ -1,21 +1,19 @@
 import {form, guesses, input, submitEvent} from "./common/constants.js";
 import {getCountries, sendGuess} from "./api/data.js";
 import {createGuessRow, slideDownWholeTableAnimation} from "./dom/dom.js";
-import {waitForAnimationEnd} from "./functions/promises.js";
+import {waitForAnimationEnd} from "./functions/waitForAnimation.js";
 import {suggestedCountry} from "./dom/suggestions.js";
 import {winFunctionality} from "./dom/win.js";
 import fitty from 'https://cdn.skypack.dev/fitty';
+import {errorProcedure} from "./dom/error.js";
 
 async function main(){
-  let countries = await getCountries();
+  let countries = await getCountries().catch(error => errorProcedure(error));
   let guess;
-
-  //DEBUG
-  console.log(countries);
 
   input.addEventListener('input',async () => {
 
-    guess = await suggestedCountry(countries);
+    guess = await suggestedCountry(countries).catch(error => errorProcedure(error));
 
     if (guess) {
       form.dispatchEvent(submitEvent);
@@ -30,8 +28,8 @@ async function main(){
     if (inputValue !== ""){
       const firstSuggestion = await document.querySelector('li p');
 
-      if (firstSuggestion !== null && !firstSuggestion.classList.contains('error')) {
-        await firstSuggestion.click();
+      if (firstSuggestion !== null && !firstSuggestion.classList.contains('nsc-error')) {
+        await firstSuggestion.click().catch(error => errorProcedure(error));
       }
     }
 
@@ -42,7 +40,7 @@ async function main(){
     const tbody = document.querySelector("#guesses tbody");
     const hasRows = tbody.querySelectorAll("tr").length !== 0;
 
-    let fieldColorsAsResult = await sendGuess(guess);
+    let fieldColorsAsResult = await sendGuess(guess).catch(error => errorProcedure(error));
     fieldColorsAsResult = fieldColorsAsResult.map(color => color.toLowerCase());
 
     if (hasRows) {
@@ -56,22 +54,19 @@ async function main(){
     const row = createGuessRow(guess, fieldColorsAsResult);
 
     guesses.tBodies[0].prepend(row);
-    const elements = await fitty(".fieldValue",{
+    await fitty(".fieldValue",{
       maxSize: 18,
       minSize: 10,
       multiLine: true
     });
 
-
     countries = countries.filter(country => country !== guess);
     guess = ''
 
     if (fieldColorsAsResult.every(color => color === "green")){
-      await winFunctionality();
+      await winFunctionality().catch(error => errorProcedure(error));
     }
   });
-
-  form.reset();
 }
 
 main();
