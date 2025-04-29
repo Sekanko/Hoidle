@@ -8,6 +8,7 @@ import pl.sekankodev.hoidledata.repositories.IRepositoryCatalog;
 import pl.sekankodev.hoidledataupdater.contract.Hoi4CountryDTO;
 import pl.sekankodev.hoidledataupdater.mappers.CountryMapper;
 import pl.sekankodev.hoidledataupdater.parsers.ICSVParser;
+import pl.sekankodev.hoidledataupdater.update_exceptions.NothingWasParsedException;
 
 import java.util.List;
 
@@ -20,6 +21,11 @@ public class UpdateService {
 
     public void UpdateCountryDatabaseFromCSVFile(String fileName) {
         List<Hoi4CountryDTO> countriesDto = parser.parseCountriesFromCSV(fileName);
+
+        if (countriesDto.isEmpty()) {
+            throw new NothingWasParsedException();
+        }
+
         List<Hoi4Country> countriesAsEntities = countriesDto.stream()
                 .map(country -> {
                     var hoi4Country = mapper.toEntity(country);
@@ -30,7 +36,6 @@ public class UpdateService {
                     return hoi4Country;
                 })
                 .toList();
-
         try{
             db.getHoi4CountryRepository().saveAll(countriesAsEntities);
         } catch (Exception e){

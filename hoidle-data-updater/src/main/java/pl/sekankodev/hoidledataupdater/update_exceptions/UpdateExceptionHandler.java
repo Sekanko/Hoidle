@@ -10,17 +10,21 @@ import pl.sekankodev.hoidledata.data_exceptions.GenericDbException;
 @ControllerAdvice
 public class UpdateExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {GenericDbException.class})
-    public ResponseEntity<Object> GenericDbException(RuntimeException ex) {
+    public ResponseEntity<Object> handleGenericDbException(RuntimeException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(value = {MappingToEnumFailedException.class})
-    public ResponseEntity<Object> MappingToEnumFailedException(RuntimeException ex) {
+    public ResponseEntity<Object> handleMappingToEnumFailedException(RuntimeException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(value = {CouldNotParseException.class})
-    public ResponseEntity<Object> CouldNotParseException(RuntimeException ex) {
+    public ResponseEntity<Object> handleCouldNotParseException(RuntimeException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    @ExceptionHandler(value = {NothingWasParsedException.class})
+    public ResponseEntity<Object> handleNothingWasParsedException(RuntimeException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

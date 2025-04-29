@@ -10,8 +10,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/hoidle-data" />
-            <option value="$PROJECT_DIR$/hoidle-data-updater" />
             <option value="$PROJECT_DIR$/hoidle-game-logic" />
+            <option value="$PROJECT_DIR$/hoidleDataUpdater" />
           </set>
         </option>
       </GradleProjectSettings>
