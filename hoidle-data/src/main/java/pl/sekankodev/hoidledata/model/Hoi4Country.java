@@ -1,6 +1,7 @@
 package pl.sekankodev.hoidledata.model;
 
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -11,6 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Accessors(chain = true)
+@EqualsAndHashCode
 public class Hoi4Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
