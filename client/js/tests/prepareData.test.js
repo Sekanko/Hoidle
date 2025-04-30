@@ -26,6 +26,10 @@ describe('Data prepartion test', () => {
       { name: 'Bosnia and Herzegovina' },
       { name: 'Bulgaria' },
     ]);
+
+    expect(filterCountriesByName("bosniaand", countries)).toEqual([
+      {name: 'Bosnia and Herzegovina'}
+    ]);
   });
 
   test('Prepare field for display', () => {

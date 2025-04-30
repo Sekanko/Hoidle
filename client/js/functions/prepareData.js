@@ -4,7 +4,7 @@ export {
 }
 
 function filterCountriesByName(name, countries){
-  return countries.filter(country => country.name.toLowerCase().startsWith(name.toLowerCase()));
+  return countries.filter(country => country.name.toLowerCase().replaceAll(' ','').startsWith(name.toLowerCase()));
 }
 
 function prepareFieldForDisplay(field){
