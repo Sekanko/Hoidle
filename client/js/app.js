@@ -9,6 +9,7 @@ import {errorProcedure} from "./dom/error.js";
 
 async function main(){
   let countries = await getCountries().catch(error => errorProcedure(error));
+  countries.sort((a, b) => a.name.localeCompare(b.name));
   let guess;
 
   input.addEventListener('input',async () => {
@@ -26,11 +27,12 @@ async function main(){
     const inputValue = input.value.toLowerCase().trim();
 
     if (inputValue !== ""){
-      const firstSuggestion = await document.querySelector('li p');
-
-      if (firstSuggestion !== null && !firstSuggestion.classList.contains('nsc-error')) {
-        await firstSuggestion.click().catch(error => errorProcedure(error));
-      }
+      setTimeout(async () => {
+        const firstSuggestion = document.querySelector('li p');
+        if (firstSuggestion !== null && !firstSuggestion.classList.contains('nsc-error')) {
+          await firstSuggestion.click();
+        }
+      }, 0);
     }
 
     if (!countries.includes(guess)){

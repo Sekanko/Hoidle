@@ -3,6 +3,7 @@ import {filterCountriesByName} from "../functions/prepareData.js";
 
 export function suggestedCountry(countries) {
   suggestions.innerHTML = '';
+  suggestions.scrollTop = 0;
   const query = input.value.toLowerCase();
   const filteredCountries = filterCountriesByName(query, countries);
 

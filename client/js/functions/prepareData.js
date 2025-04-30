@@ -4,7 +4,7 @@ export {
 }
 
 function filterCountriesByName(name, countries){
-  return countries.filter(country => country.name.toLowerCase().includes(name));
+  return countries.filter(country => country.name.toLowerCase().startsWith(name.toLowerCase()));
 }
 
 function prepareFieldForDisplay(field){
@@ -30,6 +30,8 @@ function prepareFieldForDisplay(field){
 function prepareValue(value){
   let returnValue = String(value);
   returnValue = returnValue.trim().replaceAll('_',' ').toLowerCase();
-  returnValue = returnValue.charAt(0).toUpperCase() + returnValue.slice(1);
+  returnValue = returnValue.split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
   return returnValue;
 }
