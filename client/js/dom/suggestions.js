@@ -5,12 +5,13 @@ export function suggestedCountry(countries) {
   suggestions.innerHTML = '';
   suggestions.scrollTop = 0;
   const query = input.value.toLowerCase();
-  const filteredCountries = filterCountriesByName(query, countries);
 
   if (query.length === 0) {
     suggestions.style.display = 'none';
     return Promise.resolve(null);
   }
+
+  const filteredCountries = filterCountriesByName(query, countries);
   suggestions.style.display = 'block';
 
   if (filteredCountries.length === 0){
