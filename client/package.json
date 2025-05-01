@@ -1,11 +1,14 @@
 {
   "name": "Hoidle",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "type": "module",
-  "description": "",
+  "description": "Guess the HOI4 country based on displayed information!",
   "private": true,
   "keywords": [
-    ""
+    "Hoidle",
+    "Hoi4dle",
+    "HOI4",
+    "HOI4dle"
   ],
   "license": "",
   "author": "",

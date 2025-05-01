@@ -1,6 +1,6 @@
 import {form, guesses, input, submitEvent} from "./common/constants.js";
 import {getCountries, sendGuess} from "./api/data.js";
-import {createGuessRow, slideDownWholeTableAnimation} from "./dom/dom.js";
+import {createGuessRow, setSlideHeight} from "./dom/guessTable.js";
 import {waitForAnimationEnd} from "./functions/waitForAnimation.js";
 import {suggestedCountry} from "./dom/suggestions.js";
 import {winFunctionality} from "./dom/win.js";
@@ -46,7 +46,7 @@ async function main(){
     fieldColorsAsResult = fieldColorsAsResult.map(color => color.toLowerCase());
 
     if (hasRows) {
-      slideDownWholeTableAnimation(guesses, 'wholeGuess',true);
+      setSlideHeight(guesses, '.wholeGuess');
 
       tbody.classList.add("shift-down");
       await waitForAnimationEnd(tbody);

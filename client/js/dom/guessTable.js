@@ -3,29 +3,22 @@ import {prepareFieldForDisplay} from "../functions/prepareData.js";
 
 
 export {
-  slideDownWholeTableAnimation,
+  setSlideHeight,
   createGuessRow,
 }
 
-function slideDownWholeTableAnimation(elementToMove, elementToGetHeightFrom, isClassName= false) {
+function setSlideHeight(elementToMove, ValueOfElementForQuerySelector) {
   let rowHeight;
-  if (isClassName) {
-    rowHeight = elementToMove
-      .getElementsByClassName(elementToGetHeightFrom)[0]
-      .getBoundingClientRect()
-      .height;
-  } else {
-    rowHeight = elementToMove
-      .getElementsByTagName(elementToGetHeightFrom)[0]
-      .getBoundingClientRect()
-      .height;
-  }
+  rowHeight = elementToMove
+    .querySelector(ValueOfElementForQuerySelector)
+    .getBoundingClientRect()
+    .height;
 
   const tableStyle = window.getComputedStyle(elementToMove);
   const borderSpacing = tableStyle.getPropertyValue('border-spacing');
-  const [columnGap, rowGap] =
-    borderSpacing.split(' ')
-      .map(v => parseFloat(v));
+
+  const [columnGap, rowGapRaw] = borderSpacing.split(' ');
+  const rowGap = parseFloat(rowGapRaw ?? columnGap);
 
   const animationHeight = rowHeight + rowGap;
 
