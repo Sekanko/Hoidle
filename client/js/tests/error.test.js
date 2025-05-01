@@ -1,4 +1,4 @@
-import { errorProcedure } from '../dom/error.js';
+import {errorProcedure} from '../dom/error.js';
 
 describe('Testing of error  view', () => {
   beforeEach(() => {

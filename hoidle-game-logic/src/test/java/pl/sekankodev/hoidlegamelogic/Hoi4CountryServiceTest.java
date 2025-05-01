@@ -7,7 +7,6 @@ import pl.sekankodev.hoidledata.data_exceptions.CountryNotFoundException;
 import pl.sekankodev.hoidledata.model.Hoi4Country;
 import pl.sekankodev.hoidledata.repositories.Hoi4CountryRepository;
 import pl.sekankodev.hoidledata.repositories.IRepositoryCatalog;
-import pl.sekankodev.hoidlegamelogic.mappers.Mapper;
 import pl.sekankodev.hoidlegamelogic.modelDto.Hoi4CountryDTO;
 import pl.sekankodev.hoidlegamelogic.services.Hoi4CountryService;
 

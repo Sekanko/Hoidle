@@ -1,6 +1,5 @@
-import { setSlideHeight, createGuessRow } from '../dom/guessTable.js'
-import { rgbaColors } from "../common/constants.js";
-import {prepareFieldForDisplay} from "../functions/prepareData.js";
+import {createGuessRow, setSlideHeight} from '../dom/guessTable.js'
+import {rgbaColors} from "../common/constants.js";
 
 describe('Guess table unit test', () => {
   let table;

@@ -8,7 +8,8 @@ import pl.sekankodev.hoidledataupdater.update_exceptions.MappingToEnumFailedExce
 import pl.sekankodev.hoidledataupdater.update_exceptions.NothingWasParsedException;
 import pl.sekankodev.hoidledataupdater.update_exceptions.UpdateExceptionHandler;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class UpdateExceptionHandlerTest {
     private UpdateExceptionHandler updateExceptionHandler;

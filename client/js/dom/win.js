@@ -18,9 +18,17 @@ export async function winFunctionality() {
   const finalArticleTopMargin = topMargin / 2;
 
   for (const element of allElementsInForm) {
+    if (element.tagName === 'UL') {
+      element.remove();
+      continue;
+    }
     await waitForAnimationEnd(element).catch(error => errorProcedure(error));
+    console.log(element);
     element.remove();
+    console.log("Dupa");
   }
+
+  console.log("Co jest 5? i jakim cudem pierdolony test przeszedł?");
 
   const div = document.createElement('div');
   div.classList.add('winInformation');

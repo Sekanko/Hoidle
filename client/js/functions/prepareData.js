@@ -4,7 +4,14 @@ export {
 }
 
 function filterCountriesByName(name, countries){
-  return countries.filter(country => country.name.toLowerCase().replaceAll(' ','').startsWith(name.toLowerCase()));
+  return countries.filter(
+    country => country.name
+      .toLowerCase()
+      .replaceAll(' ','')
+      .startsWith(
+        name.toLowerCase()
+      .replaceAll(' ',''))
+  );
 }
 
 function prepareFieldForDisplay(field){

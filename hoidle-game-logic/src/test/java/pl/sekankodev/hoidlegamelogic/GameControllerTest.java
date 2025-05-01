@@ -11,7 +11,6 @@ import pl.sekankodev.hoidlegamelogic.modelDto.HoidleDailyCountryDTO;
 import pl.sekankodev.hoidlegamelogic.services.GameService;
 import pl.sekankodev.hoidlegamelogic.services.IServiceCatalog;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
