@@ -12,7 +12,6 @@ import pl.sekankodev.hoidledataupdater.mappers.CountryMapper;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CountryMapperTest {
     private CountryMapper countryMapper;

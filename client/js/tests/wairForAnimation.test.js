@@ -1,4 +1,4 @@
-import { waitForAnimationEnd } from '../functions/waitForAnimation.js';
+import {waitForAnimationEnd} from '../functions/waitForAnimation.js';
 
 describe('Wait for animation to end unit test', () => {
   test('Wait for animation to end', async () => {
@@ -6,9 +6,11 @@ describe('Wait for animation to end unit test', () => {
 
     const promise = waitForAnimationEnd(element);
 
-    const event = new Event('animationend');
-    element.dispatchEvent(event);
+    setTimeout(() => {
+      const event = new Event('animationend');
+      element.dispatchEvent(event);
+    }, 1000);
 
-    await expect(promise).resolves.toBeUndefined();
+    await expect(promise).resolves.toBe('done');
   });
 });

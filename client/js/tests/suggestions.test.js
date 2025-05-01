@@ -1,5 +1,5 @@
-import { suggestedCountry } from '../dom/suggestions.js';
-import { screen, waitFor } from '@testing-library/dom';
+import {suggestedCountry} from '../dom/suggestions.js';
+import {screen, waitFor} from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import * as constants from "../common/constants.js";
 
@@ -76,7 +76,7 @@ describe('Sugestions unit test', () => {
   });
 
   test('There is a match to input value', async () => {
-    input.value = 'Aus';
+    input.value = 'Bosnia a';
     suggestedCountry(countries);
 
     await waitFor(() => suggestions.innerHTML);
@@ -84,7 +84,7 @@ describe('Sugestions unit test', () => {
     setTimeout(() => {}, 1)
     expect(suggestions.innerHTML).not.toBe('');
     expect(suggestions.style.display).toBe('block');
-    expect(suggestions.innerHTML).toBe('<li><p>Australia</p></li><li><p>Austria</p></li>');
+    expect(suggestions.innerHTML).toBe('<li><p>Bosnia and Herzegovina</p></li>');
   });
 
   test('There is a match to input value with click event', async () => {
