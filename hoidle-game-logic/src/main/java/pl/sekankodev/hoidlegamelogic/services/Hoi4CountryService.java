@@ -1,6 +1,7 @@
 package pl.sekankodev.hoidlegamelogic.services;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import pl.sekankodev.hoidledata.data_exceptions.CountryNotFoundException;
 import pl.sekankodev.hoidledata.model.Hoi4Country;
@@ -16,6 +17,7 @@ public class Hoi4CountryService  implements IHoi4CountryService {
     private final IRepositoryCatalog db;
 
     @Override
+    @Cacheable("hoi4Countries")
     public List<Hoi4CountryDTO> getHoi4Countries() {
         List<Hoi4Country> allCountries = db.getHoi4CountryRepository().findAll();
 

@@ -1,6 +1,6 @@
 {
   "name": "Hoidle",
-  "version": "0.9.1",
+  "version": "1.0.0",
   "type": "module",
   "description": "Guess the HOI4 country based on displayed information!",
   "private": true,
