@@ -16,7 +16,7 @@ describe('Win functionality unit test', () => {
 
     form = document.createElement('form');
     form.id = 'guessForm';
-    form.innerHTML = 'TEST FORM';
+    form.innerHTML = '<span>TEST FORM</span>';
     form.style.height = '50px';
 
     Object.defineProperty(constants, 'form', {
@@ -43,5 +43,6 @@ describe('Win functionality unit test', () => {
     expect(winDiv).not.toBeNull();
     expect(winDiv.innerHTML).not.toBe('');
     expect(winDiv.style.height).toBe(formHeight + 50 + "px");
-  })
-})
+    expect(form.textContent.includes('TEST FORM')).toBe(false);
+  });
+});

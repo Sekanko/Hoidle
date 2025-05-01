@@ -17,12 +17,7 @@ export async function winFunctionality() {
   const finalDivHeight = form.offsetHeight + topMargin / 2;
   const finalArticleTopMargin = topMargin / 2;
 
-
   for (const element of allElementsInForm) {
-    if (element.tagName === 'UL') {
-      element.remove();
-      continue;
-    }
     await waitForAnimationEnd(element).catch(error => errorProcedure(error));
     element.remove();
   }

@@ -1,7 +1,7 @@
 import {filterCountriesByName, prepareFieldForDisplay} from '../functions/prepareData.js';
 
 describe('Data prepartion test', () => {
-  test('Filtration of coutnries by name', () => {
+  test('Filtration of countries by name', () => {
     let countries = [
       { name: 'Australia' },
       { name: 'Austria' },
@@ -32,7 +32,7 @@ describe('Data prepartion test', () => {
     ]);
   });
 
-  test('Prepare field for display', () => {
+  test('Prepare string field for display', () => {
     const testValuesArray = [
       "EUROPE",
       "ASIA",
@@ -43,5 +43,17 @@ describe('Data prepartion test', () => {
 
     const singleString = "NON_ALIGNED";
     expect(prepareFieldForDisplay(singleString)).toEqual("Non Aligned");
+  })
+
+  test('Prepare number field for display', () => {
+    const testValuesArray = [
+      1,
+      2,
+      3,
+    ];
+    expect(prepareFieldForDisplay(testValuesArray)).toEqual(testValuesArray.join(', '));
+
+    const singleNumber = 1;
+    expect(prepareFieldForDisplay(singleNumber)).toEqual(singleNumber);
   })
 })

@@ -1,9 +1,5 @@
-export {
-  waitForAnimationEnd
-}
-
-function waitForAnimationEnd(element) {
+export function waitForAnimationEnd(element) {
   return new Promise(resolve => {
-    element.addEventListener("animationend", resolve, { once: true });
+    element.addEventListener("animationend", resolve(), { once: true });
   });
 }
