@@ -1,0 +1,246 @@
+//TODO think about slicing code a little bit
+@darkenGradient: linear-gradient(rgba(0, 0, 0, 0.3));
+@mainBackgroundColor: rgba(19, 18, 18, 0.99);
+@rowSpacing: 0.3rem;
+@columnSpacing: 0.5rem;
+@alpha: 0.95;
+@metallicGradient: linear-gradient(
+  45deg,
+  rgba(51, 51, 51, @alpha) 5%,
+  rgba(85, 85, 85, @alpha) 10%,
+  rgba(68, 68, 68, @alpha) 30%,
+  rgba(34, 34, 34, @alpha) 50%,
+  rgba(68, 68, 68, @alpha) 70%,
+  rgba(85, 85, 85, @alpha) 80%,
+  rgba(51, 51, 51, @alpha) 95%
+);
+
+
+html {
+  font-size: 1em;
+  line-height: 1.4;
+  color: white;
+  background-image:
+    @darkenGradient,
+    url("https://i.imgur.com/KgaZTBO.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Roboto', sans-serif;
+}
+
+header{
+  margin: 0;
+  padding: 0;
+
+  #hoidleLogo {
+    width: 15rem;
+    height: auto;
+    border-radius: 1rem;
+    background: @darkenGradient;
+    padding: 0.5rem;
+  }
+}
+
+article{
+  margin-top: 6rem;
+}
+
+#guessForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  label {
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+
+
+  #inputSuggestionsContainer{
+    position: relative;
+
+    #inputSubmitContainer{
+      #submitButton{
+        background: linear-gradient(#3C421A, #636c20, #3C421A);
+        padding: 0.2rem;
+        border-radius: 0.2rem;
+        text-align: center;
+        color: white;
+        border: 1px solid silver;
+        box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.13);
+
+        &:hover{
+          filter: brightness(0.8);
+        }
+
+      }
+      #guessInput{
+        background: @mainBackgroundColor;
+        color: white;
+        border: 1px solid lighten(@mainBackgroundColor, 35%);
+        padding: 0.2rem;
+        box-shadow: 0 0 2px 1px rgba(75, 83, 32, 0.67);
+
+        &:focus{
+          outline: none;
+          box-sizing: border-box;
+          filter: brightness(1.2);
+        }
+      }
+
+    }
+
+    #suggestions {
+      display: none;
+      position: absolute;
+      background-color: @mainBackgroundColor;
+      color: white;
+
+      width: 100%;
+      max-height: 200px;
+      padding: 0;
+      margin: 0;
+      left: 0;
+      top: 100%;
+
+      overflow-y: auto;
+      z-index: 1000;
+      list-style: none;
+
+      box-sizing: border-box;
+      cursor: pointer;
+
+      li {
+        margin: 0;
+        padding: 1rem;
+        border-bottom: 1px solid lighten(@mainBackgroundColor, 35%);
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+#guesses {
+  width: 55rem;
+  table-layout: fixed;
+  border-spacing: @rowSpacing @columnSpacing;
+
+
+  th {
+    border-bottom: 2px solid white;
+    border-radius: 0 0 50% 50%;
+    padding-bottom: 0.8rem;
+  }
+
+  .fieldContainer {
+    margin-top: 20px;
+    border: 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+    animation: appear 0.5s ease forwards;
+    opacity: 0;
+    border-radius: 0.3rem;
+
+
+
+    .fieldValue {
+      vertical-align: middle;
+      text-align: center;
+    }
+  }
+}
+
+.centerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+
+}
+
+.winInformation{
+  opacity: 0;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background: @metallicGradient;
+  color: #8ab572;
+  border: 2px solid rgba(161, 147, 101, 0.95);
+  p {
+    text-align: center;
+  }
+}
+
+.error{
+  padding: 12px 16px;
+  color:  rgb(178, 2, 2);
+  background-color: rgba(255, 167, 167, 0.95);
+  border-radius: 8px;
+  border: 1px solid  rgb(178, 2, 2);
+  box-shadow: 0 0 2px 2px rgba(24, 24, 24, 0.56);
+
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.hide {
+  animation: disappear 2s ease forwards;
+}
+
+.appear {
+  animation: appear 1s ease forwards;
+}
+
+@keyframes appear {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(var(--element-height, 0px));
+  }
+}
+
+.shift-down {
+  animation: slideDown 0.3s ease forwards;
+}
+

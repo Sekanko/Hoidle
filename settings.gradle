@@ -1,0 +1,3 @@
+rootProject.name = 'Hoidle'
+
+include 'hoidle-data', 'hoidle-data-updater', 'hoidle-game-logic'
