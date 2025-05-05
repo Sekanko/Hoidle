@@ -1,4 +1,4 @@
-jest.mock('../functions/waitForAnimation.js', () => ({
+jest.mock('../functions/wait_for_animation.js', () => ({
   __esModule: true,
   waitForAnimationEnd: jest.fn(() => Promise.resolve('done')),
 }));

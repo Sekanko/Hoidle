@@ -1,5 +1,5 @@
 import {input, suggestions} from "../common/constants.js";
-import {filterCountriesByName} from "../functions/prepareData.js";
+import {filterCountriesByName} from "../functions/prepare_data.js";
 
 export function suggestedCountry(countries) {
   suggestions.innerHTML = '';

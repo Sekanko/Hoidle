@@ -1,5 +1,5 @@
 import {rgbaColors} from "../common/constants.js";
-import {prepareFieldForDisplay} from "../functions/prepareData.js";
+import {prepareFieldForDisplay} from "../functions/prepare_data.js";
 
 
 export {

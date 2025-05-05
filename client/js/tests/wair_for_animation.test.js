@@ -1,4 +1,4 @@
-import {waitForAnimationEnd} from '../functions/waitForAnimation.js';
+import {waitForAnimationEnd} from '../functions/wait_for_animation.js';
 
 describe('Wait for animation to end unit test', () => {
   test('Wait for animation to end', async () => {

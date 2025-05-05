@@ -1,4 +1,4 @@
-import {filterCountriesByName, prepareFieldForDisplay} from '../functions/prepareData.js';
+import {filterCountriesByName, prepareFieldForDisplay} from '../functions/prepare_data.js';
 
 describe('Data prepartion test', () => {
   test('Filtration of countries by name', () => {

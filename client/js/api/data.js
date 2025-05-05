@@ -1,4 +1,5 @@
 import {dataAllCountries, sendGuessDirection} from "../common/constants.js";
+import {loaded, loading} from "../dom/loading.js";
 
 export {
   getCountries,
@@ -6,14 +7,21 @@ export {
 }
 
 async function getCountries() {
-  let countries = [];
-  const response = await fetch(dataAllCountries);
+  loading('Unfortunately, due to my poor budget, which is currently 0.00$' +
+    ', I can\'t give you data any faster. Please wait, it will take around 2 minutes.');
+  try {
+    const response = await fetch(dataAllCountries);
 
-  if (!response.ok){
-    throw new Error("Data wasn't received");
+    if (!response.ok) {
+      throw new Error("Data wasn't received");
+    }
+
+    return await response.json();
+  } finally {
+    loaded();
   }
-  return response.json();
 }
+
 async function sendGuess(guess) {
     return await fetch(
       sendGuessDirection,

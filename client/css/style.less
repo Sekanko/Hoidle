@@ -19,16 +19,16 @@
 html {
   font-size: 1em;
   line-height: 1.4;
-  color: white;
-  background-image:
-    @darkenGradient,
-    url("https://i.imgur.com/KgaZTBO.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
 body{
+  color: white;
+  background-image:
+    @darkenGradient,
+    url("../img/hoi4bg.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,6 +47,30 @@ header{
     background: @darkenGradient;
     padding: 0.5rem;
   }
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: @mainBackgroundColor;
+  padding: 1rem;
+  max-width: 15rem;
+  text-align: center;
+  color: lightgray;
+  border-radius: 1rem;
+  border: 1px solid lightgray;
+}
+
+.loader {
+  border: 6px solid darkgray;
+  border-radius: 50%;
+  border-top: 6px solid #2c7a4f;
+  width: 3.5rem;
+  height: 3.5rem;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
 }
 
 article{
@@ -244,3 +268,12 @@ article{
   animation: slideDown 0.3s ease forwards;
 }
 
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

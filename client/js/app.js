@@ -1,13 +1,14 @@
 import {form, guesses, input, submitEvent} from "./common/constants.js";
 import {getCountries, sendGuess} from "./api/data.js";
-import {createGuessRow, setSlideHeight} from "./dom/guessTable.js";
-import {waitForAnimationEnd} from "./functions/waitForAnimation.js";
+import {createGuessRow, setSlideHeight} from "./dom/guess_table.js";
+import {waitForAnimationEnd} from "./functions/wait_for_animation.js";
 import {suggestedCountry} from "./dom/suggestions.js";
 import {winFunctionality} from "./dom/win.js";
 import fitty from 'https://cdn.skypack.dev/fitty';
 import {errorProcedure} from "./dom/error.js";
 
 async function main(){
+
   let countries = await getCountries().catch(error => errorProcedure(error));
   countries.sort((a, b) => a.name.localeCompare(b.name));
   let guess;

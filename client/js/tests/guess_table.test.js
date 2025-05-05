@@ -1,4 +1,4 @@
-import {createGuessRow, setSlideHeight} from '../dom/guessTable.js'
+import {createGuessRow, setSlideHeight} from '../dom/guess_table.js'
 import {rgbaColors} from "../common/constants.js";
 
 describe('Guess table unit test', () => {

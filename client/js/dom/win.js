@@ -1,5 +1,5 @@
 import {form} from "../common/constants.js";
-import {waitForAnimationEnd} from "../functions/waitForAnimation.js";
+import {waitForAnimationEnd} from "../functions/wait_for_animation.js";
 import {errorProcedure} from "./error.js";
 
 export async function winFunctionality() {
@@ -23,12 +23,9 @@ export async function winFunctionality() {
       continue;
     }
     await waitForAnimationEnd(element).catch(error => errorProcedure(error));
-    ***REMOVED***
     element.remove();
-    ***REMOVED***
   }
 
-  ***REMOVED***
 
   const div = document.createElement('div');
   div.classList.add('winInformation');
