@@ -1,7 +1,3 @@
 rootProject.name = 'Hoidle'
 
-include('hoidle-data')
-include('hoidle-game-logic')
-include('hoidle-data-updater')
-
-project(':hoidle-data-updater').projectDir = file('hoidleDataUpdater')
+include 'hoidle-data', 'hoidle-data-updater', 'hoidle-game-logic'

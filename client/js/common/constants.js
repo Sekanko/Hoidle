@@ -9,8 +9,8 @@ export {
   rgbaColors,
 };
 
-const dataAllCountries = 'http://localhost:8081/data/allCountries';
-const sendGuessDirection = 'http://localhost:8081/game/control/guessed';
+const dataAllCountries = 'https://hoidle-1-1-0-latest.onrender.com/data/allCountries';
+const sendGuessDirection = 'https://hoidle-1-1-0-latest.onrender.com/game/control/guessed';
 const input = document.getElementById("guessInput");
 const suggestions = document.getElementById("suggestions");
 const form = document.getElementById('guessForm');
