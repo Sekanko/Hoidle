@@ -26,17 +26,7 @@ public class CSVParserTest {
     }
 
     @Test
-    public void parseCountriesFromCSVWithCorrectFileNameTest() throws IOException {
-
-        Path resourcePath = Paths.get("hoidle-data-updater/src/main/resources/test-countries.csv");
-
-        String csv = """
-                Name;Continents;Ideology;Historical faction;Research slots;National focus tree;Access to the see;Train researched;Formable nation
-                Kingdom of Afghanistan;Asia;Non-Aligned;None;2;true;false;false;Persian Empire
-                Albanian Kingdom;Europe;Non-Aligned;None;2;false;true;false;None
-                """;
-        Files.createDirectories(resourcePath.getParent());
-        Files.write(resourcePath, csv.getBytes());
+    public void parseCountriesFromCSVWithCorrectFileNameTest() {
         String fileName = "test-countries.csv";
         var result = csvParser.parseCountriesFromCSV(fileName);
 
@@ -44,7 +34,5 @@ public class CSVParserTest {
         assertEquals(2, result.size());
         assertEquals("Kingdom of Afghanistan", result.get(0).getName());
         assertEquals("Albanian Kingdom", result.get(1).getName());
-
-        Files.delete(resourcePath);
     }
 }
