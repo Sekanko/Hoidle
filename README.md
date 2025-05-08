@@ -103,7 +103,7 @@ it came to reality, sometimes tests passed but functionalities
 were far from intended. At the end of the day because of
 them, I was able to catch subtle bugs and improve the code right away.
 
-Anyway, I'm willing to continue woring on **Hoidle** as soon as possible
+Anyway, I'm willing to continue working on **Hoidle** as soon as possible,
 and I can't wait to see how far I can take this project.
 
 ## 🙏 Thank you for your time!
