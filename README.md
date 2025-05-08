@@ -27,7 +27,7 @@ Currently, the project contains only **"Classic Mode"** but I plan to add more m
 
 ### 🧱Build Instructions
 1. Clone the repository
-2. In the Client module you should see constats.js
+2. In the Client module you should see constants.js
 
 `client/js/common/constants.js`
 
@@ -60,7 +60,7 @@ DATABASE_URL=your_database_url
 
 > 💡 Example:
 > ```
-> DATABASE_USER=dataManager
+> DATABASE_USER=data_manager
 > DATABASE_PASSWORD=123
 > DATABASE_URL=postgresql://host.docker.internal:5432/my_db
 > ```
@@ -79,18 +79,18 @@ Please open `index.html` from **Client** module and enjoy the game!
 
 ### 🔍 Tests
 
-To perform unit tests, you have to separately run all tests in each module
+To perform unit tests, you have to separately run all tests in each module.
 
 For **Client** tests I used `jest`, so you need to go to this
-module in your console and run `npm test`
+module in your console and run `npm test`.
 
 If you don't have `npm` installed, you won't be able to run client-side tests.
 
 ## 💬 My comment
-**Hoidle** is an Idea that my friend Filip and I came up with
+**Hoidle** is an idea that my friend Filip and I came up with
 after playing **Loldle** a lot. It's my first project that I really 
-see as something public, something people can play. I know there 
-a huge amount of work to do, but I am ready to face the challenge.
+see as something public, something people can play. I know there's still 
+a lot to do, but I'm ready to take on the challenge.
 
 In addition, while working on it, I truly enjoyed learning more about 
 JavaScript – up to now, I'd only used it for basic animations.
@@ -101,9 +101,9 @@ Last but not the least, I've learned a lesson about testing.
 Creating unit tests seemed really easy at first, but when 
 it came to reality, sometimes tests passed but functionalities 
 were far from intended. At the end of the day because of
-them, I found many small mistakes that I could immediately correct
+them, I was able to catch subtle bugs and improve the code right away.
 
-Anyway, I'm willing to continue this project as soon as possible
-and cannot wait to face new challenges during the process
+Anyway, I'm willing to continue woring on **Hoidle** as soon as possible
+and I can't wait to see how far I can take this project.
 
 ## 🙏 Thank you for your time!
