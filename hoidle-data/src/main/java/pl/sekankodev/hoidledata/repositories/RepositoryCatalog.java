@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 public class RepositoryCatalog implements IRepositoryCatalog {
     private final Hoi4CountryRepository hoi4CountryRepository;
     private final HoidleDailyCountryRepository hoidleDailyCountryRepository;
+    private final HoidleUserRepository hoidleUserRepository;
 }
