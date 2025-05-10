@@ -39,15 +39,14 @@ const sendGuessDirection = 'http://localhost:8080/game/control/guessed';
 // const dataAllCountries = 'https://hoidle-1-1-0-latest.onrender.com/data/allCountries';
 // const sendGuessDirection = 'https://hoidle-1-1-0-latest.onrender.com/game/control/guessed';
 ```
-If you want to test it using my hosted backend, comment and uncomment 
-those lines of code to use the render.com link and 
-jump to the `🔗 Application Page` part.
+If you want to test it using my hosted backend, comment and uncomment proper lines
+to use the onrender.com link and jump to the `🔗 Application Page` part.
 
 **Although be aware that it is slow because I use only free
 services for my hobby.**
 
-Otherwise, comment and uncomment proper lines to have localhost as a source
-and follow down the instructions.
+Otherwise, set these constants to point to localhost 
+(as it is in example) and follow down the instructions.
 
 3. Create a local PostgreSQL database
 4. Set the following environment variables:
@@ -92,7 +91,7 @@ after playing **Loldle** a lot. It's my first project that I really
 see as something public, something people can play. I know there's still 
 a lot to do, but I'm ready to take on the challenge.
 
-In addition, while working on it, I truly enjoyed learning more about 
+While working on it, I truly enjoyed learning more about 
 JavaScript – up to now, I'd only used it for basic animations.
 After completing `classic mode` for **Hoidle** I must say it's been and is
 a great and fun experience.
