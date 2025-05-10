@@ -47,8 +47,8 @@ const sendGuessDirection = 'http://localhost:8080/game/control/guessed';
 If you want to test it using my hosted backend, comment and uncomment proper lines
 to use the onrender.com link and jump to the `🔗 Application Page` part.
 
-**Although be aware that it is slow because I use only free
-services for my hobby.**
+**Although be aware that it is slow because I only use free
+services for my hobby. Also my host runs the latest stable version**
 
 Otherwise, set these constants to point to localhost 
 (as it is in example) and follow down the instructions.
