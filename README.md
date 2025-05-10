@@ -25,7 +25,8 @@ Currently, the project contains only **"Classic Mode"** but I plan to add more m
 - Backend: Java, Spring Boot, PostgreSQL, MySQL (used initially)
 - Additional: IntelliJ IDEA, Gradle, MySQL Workbench, Docker, Git
 
-❗ Important ❗
+### ❗ Important ❗
+
 You may need to run the main application file once before running anything else; otherwise, it might not work.
 At least, it worked for me this way
 
