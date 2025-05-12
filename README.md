@@ -8,6 +8,7 @@ it uses **Hearts of Iron IV (HOI4) countries**.
 - You enter the name of any country in HOI4.
 - You will be given a series of clues related to a country.
 - Your goal is to guess the country based on these clues.
+
   
 ### 🏷 Current Version 
 
@@ -18,11 +19,13 @@ Currently, the project contains only **"Classic Mode"** but I plan to add more m
 - Guess from border shape mode
 - Save your today's guesses
 
+**_Now feel free to [check it out](https://hoidle.netlify.app/)!_**
+
 ## ⚙️ Technicals 
 
 ### 🛠️ Technologies Used:
 - Frontend: HTML, LESS, JavaScript
-- Backend: Java, Spring Boot, PostgreSQL, MySQL (used initially)
+- Backend: Java 17, Spring Boot, PostgreSQL, MySQL (used initially)
 - Additional: IntelliJ IDEA, Gradle, MySQL Workbench, Docker, Git
 
 ### ❗ Important ❗
