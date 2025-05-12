@@ -5,4 +5,5 @@ import pl.sekankodev.hoidledata.model.HoidleUser;
 
 public interface HoidleUserRepository extends JpaRepository<HoidleUser, Long> {
     HoidleUser findByEmail(String email);
+    boolean existsByEmail(String email);
 }
