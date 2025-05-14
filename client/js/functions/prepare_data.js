@@ -4,14 +4,19 @@ export {
 }
 
 function filterCountriesByName(name, countries){
-  return countries.filter(
-    country => country.name
-      .toLowerCase()
-      .replaceAll(' ','')
-      .startsWith(
-        name.toLowerCase()
-      .replaceAll(' ',''))
-  );
+  name = name.toLowerCase().replaceAll(' ','');
+  return countries.filter(country => {
+    const countryName = country.name.toLowerCase();
+    const countryNameSplit = countryName.split(' ');
+    let text ='';
+    for (let i=countryNameSplit.length - 1; i > 0; i--) {
+      text = countryNameSplit[i] + text;
+      if (text.startsWith(name)){
+        return true;
+      }
+    }
+    return countryName.replaceAll(' ','').startsWith(name);
+  });
 }
 
 function prepareFieldForDisplay(field){

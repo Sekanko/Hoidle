@@ -12,7 +12,8 @@ describe('Data prepartion test', () => {
       { name: 'Croatia' },
       { name: 'Czechia' },
       { name: 'Denmark' },
-      { name: 'Estonia' }
+      { name: 'Estonia' },
+      {name: 'United Kingdom of Great Britain and Northern Ireland'},
     ];
 
     expect(filterCountriesByName("Au", countries)).toEqual([
@@ -25,10 +26,15 @@ describe('Data prepartion test', () => {
       { name: 'Belgium' },
       { name: 'Bosnia and Herzegovina' },
       { name: 'Bulgaria' },
+      {name: 'United Kingdom of Great Britain and Northern Ireland'},
     ]);
 
     expect(filterCountriesByName("bosniaand", countries)).toEqual([
       {name: 'Bosnia and Herzegovina'}
+    ]);
+
+    expect(filterCountriesByName("Britain", countries)).toEqual([
+      {name: 'United Kingdom of Great Britain and Northern Ireland'}
     ]);
   });
 
