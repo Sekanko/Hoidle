@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/hoidle-data" />
             <option value="$PROJECT_DIR$/hoidle-data-updater" />
             <option value="$PROJECT_DIR$/hoidle-game-logic" />
+            <option value="$PROJECT_DIR$/hoidle-user-management" />
           </set>
         </option>
       </GradleProjectSettings>

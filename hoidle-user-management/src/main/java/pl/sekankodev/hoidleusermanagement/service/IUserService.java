@@ -1,7 +1,7 @@
 package pl.sekankodev.hoidleusermanagement.service;
 
-import pl.sekankodev.hoidleusermanagement.model.request.HoidleUserRequestDTO;
-import pl.sekankodev.hoidleusermanagement.model.response.HoidleUserResponseDTO;
+import pl.sekankodev.hoidleusermanagement.model.HoidleUserRequestDTO;
+import pl.sekankodev.hoidleusermanagement.model.HoidleUserResponseDTO;
 
 public interface IUserService {
     Long createUser(HoidleUserRequestDTO requestUser);

@@ -1,10 +1,10 @@
 package pl.sekankodev.hoidleusermanagement.mapper;
 
 import pl.sekankodev.hoidledata.model.HoidleUser;
-import pl.sekankodev.hoidleusermanagement.model.request.HoidleUserRequestDTO;
-import pl.sekankodev.hoidleusermanagement.model.response.HoidleUserResponseDTO;
+import pl.sekankodev.hoidleusermanagement.model.HoidleUserRequestDTO;
+import pl.sekankodev.hoidleusermanagement.model.HoidleUserResponseDTO;
 
 public interface IUserMapper {
-    HoidleUserResponseDTO toResponseDTO(HoidleUserResponseDTO responseDTO);
-    HoidleUser toEntity(HoidleUserRequestDTO responseDTO);
+    HoidleUserResponseDTO toResponseDTO(HoidleUser user);
+    HoidleUser toEntity(HoidleUserRequestDTO requestDTO);
 }

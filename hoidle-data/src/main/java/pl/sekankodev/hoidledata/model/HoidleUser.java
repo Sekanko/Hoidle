@@ -3,14 +3,16 @@ package pl.sekankodev.hoidledata.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Value;
+import lombok.experimental.Accessors;
 
 import java.time.LocalDate;
 
 @Entity
 @Data
+@Accessors(chain = true)
 public class HoidleUser {
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String password;

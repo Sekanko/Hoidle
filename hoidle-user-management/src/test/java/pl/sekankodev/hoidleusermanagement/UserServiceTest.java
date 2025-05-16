@@ -3,12 +3,13 @@ package pl.sekankodev.hoidleusermanagement;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import pl.sekankodev.hoidledata.model.HoidleUser;
 import pl.sekankodev.hoidledata.repositories.HoidleUserRepository;
 import pl.sekankodev.hoidledata.repositories.IRepositoryCatalog;
 import pl.sekankodev.hoidleusermanagement.mapper.IUserMapper;
 import pl.sekankodev.hoidleusermanagement.mapper.UserMapper;
-import pl.sekankodev.hoidleusermanagement.model.request.HoidleUserRequestDTO;
+import pl.sekankodev.hoidleusermanagement.model.HoidleUserRequestDTO;
 import pl.sekankodev.hoidleusermanagement.service.UserService;
 import pl.sekankodev.hoidleusermanagement.user_exceptions.UserAlreadyRegisteredException;
 
@@ -19,16 +20,18 @@ import static org.mockito.Mockito.*;
 public class UserServiceTest {
     private UserService userService;
     private IUserMapper userMapper;
+    private BCryptPasswordEncoder encoder;
     private IRepositoryCatalog db;
 
     @BeforeEach
     void setUp(){
         userMapper = Mockito.mock(UserMapper.class);
+        encoder = Mockito.mock(BCryptPasswordEncoder.class);
         db = Mockito.mock(IRepositoryCatalog.class);
         HoidleUserRepository hoidleUserRepository = Mockito.mock(HoidleUserRepository.class);
         when(db.getHoidleUserRepository()).thenReturn(hoidleUserRepository);
 
-        userService = new UserService(db, userMapper);
+//        userService = new UserService(db, userMapper,encoder);
     }
 
     @Test
