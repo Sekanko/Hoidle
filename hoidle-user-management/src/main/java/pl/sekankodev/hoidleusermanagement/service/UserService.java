@@ -13,10 +13,12 @@ import org.springframework.stereotype.Service;
 import pl.sekankodev.hoidledata.model.HoidleUser;
 import pl.sekankodev.hoidledata.repositories.IRepositoryCatalog;
 import pl.sekankodev.hoidleusermanagement.mapper.IUserMapper;
+import pl.sekankodev.hoidleusermanagement.model.AuthenticationResponse;
 import pl.sekankodev.hoidleusermanagement.model.HoidleAppUserDetails;
 import pl.sekankodev.hoidleusermanagement.model.HoidleUserRequestDTO;
-import pl.sekankodev.hoidleusermanagement.model.HoidleUserResponseDTO;
+import pl.sekankodev.hoidleusermanagement.user_exceptions.AuthenticationRefusedException;
 import pl.sekankodev.hoidleusermanagement.user_exceptions.UserAlreadyRegisteredException;
+import pl.sekankodev.hoidleusermanagement.user_exceptions.UserNotFoundException;
 
 @Service
 @RequiredArgsConstructor
@@ -44,26 +46,56 @@ public class UserService implements  IUserService, UserDetailsService {
 
     @Override
     public Long updateUser(HoidleUserRequestDTO requestUser) {
-        return 0L;
+        HoidleUser user = db.getHoidleUserRepository().findByEmail(requestUser.getEmail());
+
+        if (user == null){
+            throw new UserNotFoundException();
+        }
+
+        if (!encoder.matches(requestUser.getPassword(), user.getPassword())){
+            throw new AuthenticationRefusedException();
+        }
+
+        HoidleUser updatedUser = mapper.toEntity(requestUser, user);
+        db.getHoidleUserRepository().save(updatedUser);
+
+        return updatedUser.getId();
     }
 
     @Override
     public Long deleteUser(HoidleUserRequestDTO requestUser) {
-        return 0L;
+
+        HoidleUser user = db.getHoidleUserRepository().findByEmail(requestUser.getEmail());
+
+        if (user == null){
+            throw new UserNotFoundException();
+        }
+
+        if (!encoder.matches(requestUser.getPassword(), user.getPassword())){
+            throw new AuthenticationRefusedException();
+        }
+
+        db.getHoidleUserRepository().delete(user);
+
+        return user.getId();
     }
 
     @Override
-    public HoidleUserResponseDTO logInUser(HoidleUserRequestDTO requestUser) {
+    public AuthenticationResponse logInUser(HoidleUserRequestDTO requestUser) {
         try {
             Authentication authentication = authManager.authenticate(
                     new UsernamePasswordAuthenticationToken(requestUser.getEmail(), requestUser.getPassword())
             );
 
-            return new HoidleUserResponseDTO().setUsername(JWTService.generateToken(requestUser.getEmail()));
-        } catch (AuthenticationException e) {
-            return new HoidleUserResponseDTO().setUsername(e.getLocalizedMessage());
-        }
+            HoidleUser user = db.getHoidleUserRepository().findByEmail(requestUser.getEmail());
 
+            return new AuthenticationResponse()
+                    .setUser(mapper.toResponseDTO(user))
+                    .setToken(JWTService.generateToken(user.getEmail()));
+
+        } catch (AuthenticationException e) {
+            throw new AuthenticationRefusedException();
+        }
     }
 
     @Override
@@ -71,7 +103,7 @@ public class UserService implements  IUserService, UserDetailsService {
         HoidleUser user = db.getHoidleUserRepository().findByEmail(email);
 
         if (user == null){
-            throw new UsernameNotFoundException("User with email: " + email + " not found");
+            throw new UserNotFoundException();
         }
 
         return new HoidleAppUserDetails(user);

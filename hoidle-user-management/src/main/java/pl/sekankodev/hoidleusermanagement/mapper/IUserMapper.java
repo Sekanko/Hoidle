@@ -7,4 +7,6 @@ import pl.sekankodev.hoidleusermanagement.model.HoidleUserResponseDTO;
 public interface IUserMapper {
     HoidleUserResponseDTO toResponseDTO(HoidleUser user);
     HoidleUser toEntity(HoidleUserRequestDTO requestDTO);
+
+    HoidleUser toEntity(HoidleUserRequestDTO requestDTO, HoidleUser user);
 }

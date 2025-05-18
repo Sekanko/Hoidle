@@ -1,5 +1,7 @@
 package pl.sekankodev.hoidleusermanagement.model;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,6 +11,8 @@ import pl.sekankodev.hoidledata.model.HoidleUser;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
+@EqualsAndHashCode
 public class HoidleAppUserDetails implements UserDetails {
     private HoidleUser user;
 
