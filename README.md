@@ -63,6 +63,7 @@ Otherwise, set these constants to point to localhost
 DATABASE_USER=your_username
 DATABASE_PASSWORD=your_password
 DATABASE_URL=your_database_url
+JWT_SECRET=your super secret key - it has to be strong enough
 ```
 
 > 💡 Example:
@@ -70,6 +71,7 @@ DATABASE_URL=your_database_url
 > DATABASE_USER=data_manager
 > DATABASE_PASSWORD=123
 > DATABASE_URL=postgresql://host.docker.internal:5432/my_db
+> JWT_SECRET=OMzOz4adL0021312v/GB4Me7RQPaoeztFqxIdyF8/eK+avQ=
 > ```
 
 5. Run HoidleApplication
@@ -89,7 +91,8 @@ Please open `index.html` from **Client** module and enjoy the game!
 To perform unit tests, you have to separately run all tests in each module.
 
 For **Client** tests I used `jest`, so you need to go to this
-module in your console and run `npm test`.
+module in your console and run `npm install --save-dev jest
+ ` and then `npm test`.
 
 If you don't have `npm` installed, you won't be able to run client-side tests.
 

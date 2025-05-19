@@ -36,12 +36,13 @@ public class SecurityConfig {
         return http.csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(request ->
                         request
-                                .requestMatchers("/auth/login", "/auth/register")
-                                .permitAll()
-                                .requestMatchers("/admin/")
-                                .hasRole("ADMIN")
+//                                .requestMatchers("/auth/login", "/auth/register")
+//                                .permitAll()
+//                                .requestMatchers("/admin/")
+//                                .hasRole("ADMIN")
                                 .anyRequest()
-                                .authenticated()
+                                .permitAll()
+//                                .authenticated()
                 )
 //                .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
