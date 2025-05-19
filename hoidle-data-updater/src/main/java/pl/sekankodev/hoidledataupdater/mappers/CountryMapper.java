@@ -35,6 +35,7 @@ public class CountryMapper implements IMap<Hoi4CountryDTO, Hoi4Country> {
                         throw new MappingToEnumFailedException();
                     }
                 })
+                .sorted()
                 .toList();
     }
 

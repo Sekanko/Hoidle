@@ -42,8 +42,8 @@ public class CountryMapperTest {
                 .setIdeology(Ideology.DEMOCRATIC)
                 .setContinents(List.of(Continent.EUROPE))
                 .setHistoricalFactions(List.of(
-                        Faction.AXIS,
-                        Faction.ALLIES
+                        Faction.ALLIES,
+                        Faction.AXIS
                 ))
                 .setAccessToTheSea(true)
                 .setResearchedTrain(true)
@@ -52,6 +52,7 @@ public class CountryMapperTest {
                 .setResearchSlotsNumber((byte)3);
 
         var result = countryMapper.toEntity(countryDto);
+
         assertEquals(result, expectedCountry);
     }
 }
