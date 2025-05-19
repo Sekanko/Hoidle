@@ -24,16 +24,16 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PostMapping("update")
+    @PatchMapping("update")
     public ResponseEntity<Void> updateUser(@Valid @RequestBody HoidleUserRequestDTO user) {
         userService.updateUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("delete")
+    @DeleteMapping("delete")
     public ResponseEntity<Void> deleteUser(@Valid @RequestBody HoidleUserRequestDTO user) {
         userService.deleteUser(user);
-        return new ResponseEntity<>(HttpStatus.GONE);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("login")
