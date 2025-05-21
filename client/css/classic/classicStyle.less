@@ -1,53 +1,5 @@
-//TODO think about slicing code a little bit
-@darkenGradient: linear-gradient(rgba(0, 0, 0, 0.3));
-@mainBackgroundColor: rgba(19, 18, 18, 0.99);
-@rowSpacing: 0.3rem;
-@columnSpacing: 0.5rem;
-@alpha: 0.95;
-@metallicGradient: linear-gradient(
-  45deg,
-  rgba(51, 51, 51, @alpha) 5%,
-  rgba(85, 85, 85, @alpha) 10%,
-  rgba(68, 68, 68, @alpha) 30%,
-  rgba(34, 34, 34, @alpha) 50%,
-  rgba(68, 68, 68, @alpha) 70%,
-  rgba(85, 85, 85, @alpha) 80%,
-  rgba(51, 51, 51, @alpha) 95%
-);
-
-
-html {
-  font-size: 1em;
-  line-height: 1.4;
-}
-
-body{
-  color: white;
-  background-image:
-    @darkenGradient,
-    url("../img/hoi4bg.jpeg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-  font-family: 'Roboto', sans-serif;
-}
-
-header{
-  margin: 0;
-  padding: 0;
-
-  #hoidleLogo {
-    width: 15rem;
-    height: auto;
-    border-radius: 1rem;
-    background: @darkenGradient;
-    padding: 0.5rem;
-  }
-}
+@import "../variables.less";
+@import "../common.less";
 
 .loadingContainer {
   display: flex;
@@ -61,6 +13,11 @@ header{
   color: lightgray;
   border-radius: 1rem;
   border: 1px solid lightgray;
+
+  @media (max-width: 900px) {
+    margin: 0 auto;
+    transform: scale(0.9);
+  }
 }
 
 .loader {
@@ -75,6 +32,10 @@ header{
 
 article{
   margin-top: 6rem;
+
+  @media (max-width: 900px) {
+    align-self: stretch;
+  }
 }
 
 #guessForm{
@@ -82,6 +43,10 @@ article{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 900px){
+    transform: scale(0.8);
+  }
 
   label {
     letter-spacing: 2px;
@@ -161,7 +126,6 @@ article{
   table-layout: fixed;
   border-spacing: @rowSpacing @columnSpacing;
 
-
   th {
     border-bottom: 2px solid white;
     border-radius: 0 0 50% 50%;
@@ -185,6 +149,11 @@ article{
   }
 }
 
+#tableDiv{
+  overflow-x: scroll;
+  max-width: 100%;
+}
+
 .centerContainer {
   display: flex;
   flex-direction: column;
@@ -203,22 +172,15 @@ article{
   border: 2px solid rgba(161, 147, 101, 0.95);
   p {
     text-align: center;
+
+    @media(max-width: 900px){
+      text-wrap: nowrap;
+    }
   }
-}
 
-.error{
-  padding: 12px 16px;
-  color:  rgb(178, 2, 2);
-  background-color: rgba(255, 167, 167, 0.95);
-  border-radius: 8px;
-  border: 1px solid  rgb(178, 2, 2);
-  box-shadow: 0 0 2px 2px rgba(24, 24, 24, 0.56);
-
-  font-weight: bold;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @media(max-width: 900px){
+    min-width: 80vw;
+  }
 }
 
 .hidden {

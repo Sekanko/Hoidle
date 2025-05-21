@@ -15,7 +15,6 @@ async function getCountries() {
     if (!response.ok) {
       throw new Error("Data wasn't received");
     }
-
     return await response.json();
   } finally {
     loaded();
