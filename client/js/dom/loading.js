@@ -2,9 +2,9 @@ export {
   loading,
   loaded
 }
+
 function loading(message = "Loading...") {
-  const article = document.querySelector("article");
-  [...article.children].forEach(child => child.style.display = "none");
+  const body = document.querySelector("body");
 
   const loadingContainer = document.createElement('div');
   loadingContainer.className = 'loadingContainer';
@@ -15,12 +15,17 @@ function loading(message = "Loading...") {
   const loadingMessage = document.createElement('p');
   loadingMessage.innerHTML = message;
 
+  const blackoutContainer = document.createElement('div');
+  blackoutContainer.className = 'blackout';
+
   loadingContainer.append(loader, loadingMessage);
-  article.append(loadingContainer);
+  body.append(loadingContainer);
+  body.append(blackoutContainer);
 }
 
-function loaded(){
-  const article = document.querySelector("article");
-  article.removeChild(article.querySelector(".loadingContainer"));
-  [...article.children].forEach(child => child.style.display = "");
+async function loaded() {
+  const loading = document.querySelector(".loadingContainer");
+  const blackout = document.querySelector(".blackout");
+  loading.remove();
+  blackout.remove();
 }

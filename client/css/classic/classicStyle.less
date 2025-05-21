@@ -1,24 +1,6 @@
 @import "../variables.less";
 @import "../common.less";
 
-.loadingContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: @mainBackgroundColor;
-  padding: 1rem;
-  max-width: 15rem;
-  text-align: center;
-  color: lightgray;
-  border-radius: 1rem;
-  border: 1px solid lightgray;
-
-  @media (max-width: 900px) {
-    margin: 0 auto;
-    transform: scale(0.9);
-  }
-}
 
 .loader {
   border: 6px solid darkgray;
@@ -35,6 +17,10 @@ article{
 
   @media (max-width: 900px) {
     align-self: stretch;
+  }
+
+  @media (max-width: 600px) {
+    margin-top: 15vh;
   }
 }
 

@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hoidle</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
   <link rel="stylesheet/less" type="text/css" href="css/classic/classicStyle.less" />
   <script src="https://cdn.jsdelivr.net/npm/less"></script>
 
@@ -22,12 +25,22 @@
 
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#fafafa">
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basiclightbox@5/dist/basicLightbox.min.css">
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/basiclightbox@5/dist/basicLightbox.min.js"></script>
+
 </head>
 
 <body>
   <header>
     <img src="img/transparentLogo.png" alt="Hoidle" id="hoidleLogo">
   </header>
+  <div id="account">
+    <i class="fa-solid fa-user" id="accountIcon"></i>
+    <span>Sign in</span>
+  </div>
   <article>
   <form action="" id="guessForm">
     <label for="guessInput">Guess HOI4 Country!</label>
