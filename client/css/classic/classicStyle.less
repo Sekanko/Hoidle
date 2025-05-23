@@ -24,6 +24,21 @@ article{
   }
 }
 
+.hoiButton{
+  background: linear-gradient(#3C421A, #636c20, #3C421A);
+  padding: 0.2rem;
+  border-radius: 0.2rem;
+  text-align: center;
+  color: white;
+  border: 1px solid silver;
+  box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.13);
+
+  &:hover{
+    filter: brightness(0.8);
+  }
+
+}
+
 #guessForm{
   display: flex;
   flex-direction: column;
@@ -44,20 +59,7 @@ article{
     position: relative;
 
     #inputSubmitContainer{
-      #submitButton{
-        background: linear-gradient(#3C421A, #636c20, #3C421A);
-        padding: 0.2rem;
-        border-radius: 0.2rem;
-        text-align: center;
-        color: white;
-        border: 1px solid silver;
-        box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.13);
 
-        &:hover{
-          filter: brightness(0.8);
-        }
-
-      }
       #guessInput{
         background: @mainBackgroundColor;
         color: white;
@@ -170,7 +172,7 @@ article{
 }
 
 .hidden {
-  opacity: 0;
+  display: none;
 }
 
 .hide {

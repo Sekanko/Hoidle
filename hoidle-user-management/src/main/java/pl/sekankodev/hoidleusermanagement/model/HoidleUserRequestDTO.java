@@ -1,5 +1,6 @@
 package pl.sekankodev.hoidleusermanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -20,5 +21,6 @@ public class HoidleUserRequestDTO {
     private Role role;
     private int streak;
     private int longestStreak;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate lastWin;
 }

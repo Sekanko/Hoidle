@@ -25,10 +25,8 @@
 
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#fafafa">
-  <!-- CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basiclightbox@5/dist/basicLightbox.min.css">
 
-  <!-- JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basiclightbox@5/dist/basicLightbox.min.css">
   <script src="https://cdn.jsdelivr.net/npm/basiclightbox@5/dist/basicLightbox.min.js"></script>
 
 </head>
@@ -39,7 +37,15 @@
   </header>
   <div id="account">
     <i class="fa-solid fa-user" id="accountIcon"></i>
-    <span>Sign in</span>
+    <span id="accountHolder">Sign in</span>
+    <div id="loggedInList" class="hidden accountList">
+      <button id="details" class="hoiButton">Details</button>
+      <button id="signOut" class="hoiButton">Sign out</button>
+    </div>
+    <div id="signList" class="hidden accountList">
+      <button id="signIn" class="hoiButton">Sign in</button>
+      <button id="signUp" class="hoiButton">Sign up</button>
+    </div>
   </div>
   <article>
   <form action="" id="guessForm">
@@ -47,7 +53,7 @@
     <div id="inputSuggestionsContainer">
       <div id="inputSubmitContainer">
         <input type="text" name="guessInput" id="guessInput" autocomplete="off">
-        <button type="submit" id="submitButton">Guess</button>
+        <button type="submit" class="hoiButton">Guess</button>
       </div>
       <ul id="suggestions"></ul>
     </div>

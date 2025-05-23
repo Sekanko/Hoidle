@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.sekankodev.hoidledata.model.HoidleUser;
+import pl.sekankodev.hoidledata.model.Role;
 import pl.sekankodev.hoidledata.repositories.IRepositoryCatalog;
 import pl.sekankodev.hoidleusermanagement.mapper.IUserMapper;
 import pl.sekankodev.hoidleusermanagement.model.AuthenticationResponse;
@@ -36,7 +37,12 @@ public class UserService implements  IUserService, UserDetailsService {
             throw new UserAlreadyRegisteredException();
         }
 
-        requestUser.setPassword(encoder.encode(requestUser.getPassword()));
+        requestUser
+                .setPassword(encoder.encode(requestUser.getPassword()))
+                .setRole(Role.USER)
+                .setStreak(0)
+                .setLongestStreak(0)
+                .setUsername("New User");
 
         HoidleUser user = mapper.toEntity(requestUser);
         db.getHoidleUserRepository().save(user);

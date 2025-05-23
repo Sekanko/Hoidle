@@ -15,9 +15,9 @@ import pl.sekankodev.hoidleusermanagement.service.IUserService;
 @RestController
 @RequestMapping("/auth/")
 @RequiredArgsConstructor
+@CrossOrigin
 public class UserController {
     private final IUserService userService;
-
     @PostMapping("register")
     public ResponseEntity<Void> registerUser(@Valid @RequestBody  HoidleUserRequestDTO user) {
         userService.createUser(user);

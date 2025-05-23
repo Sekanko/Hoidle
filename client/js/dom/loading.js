@@ -23,7 +23,7 @@ function loading(message = "Loading...") {
   body.append(blackoutContainer);
 }
 
-async function loaded() {
+function loaded() {
   const loading = document.querySelector(".loadingContainer");
   const blackout = document.querySelector(".blackout");
   loading.remove();
