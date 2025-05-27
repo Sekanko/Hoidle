@@ -28,12 +28,15 @@ Currently, the project contains only **"Classic Mode"** but I plan to add more m
 - Backend: Java 17, Spring Boot, PostgreSQL, MySQL (used initially)
 - Additional: IntelliJ IDEA, Gradle, MySQL Workbench, Docker, Git
 
+
+
+### 🧱Build Instructions
 ### ❗ Important ❗
+
+#### The building instructions will be updated in July
 
 You may need to run the main application file once before running anything else; otherwise, it might not work.
 At least, it worked for me this way
-
-### 🧱Build Instructions
 1. Clone the repository
 2. In the Client module you should see constants.js
 
