@@ -15,4 +15,5 @@ public class HoidleUserResponseDTO {
     private int streak;
     private int longestStreak;
     private LocalDate lastWin;
+    private int todaysAttempts;
 }

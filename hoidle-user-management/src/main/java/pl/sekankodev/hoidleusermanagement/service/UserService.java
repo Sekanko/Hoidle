@@ -17,9 +17,12 @@ import pl.sekankodev.hoidleusermanagement.mapper.IUserMapper;
 import pl.sekankodev.hoidleusermanagement.model.AuthenticationResponse;
 import pl.sekankodev.hoidleusermanagement.model.HoidleAppUserDetails;
 import pl.sekankodev.hoidleusermanagement.model.HoidleUserRequestDTO;
+import pl.sekankodev.hoidleusermanagement.model.HoidleUserResponseDTO;
 import pl.sekankodev.hoidleusermanagement.user_exceptions.AuthenticationRefusedException;
 import pl.sekankodev.hoidleusermanagement.user_exceptions.UserAlreadyRegisteredException;
 import pl.sekankodev.hoidleusermanagement.user_exceptions.UserNotFoundException;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -37,13 +40,9 @@ public class UserService implements  IUserService, UserDetailsService {
             throw new UserAlreadyRegisteredException();
         }
 
-        requestUser
-                .setPassword(encoder.encode(requestUser.getPassword()))
-                .setRole(Role.USER)
-                .setStreak(0)
-                .setLongestStreak(0)
-                .setUsername("New User");
-
+        requestUser.setPassword(encoder.encode(requestUser.getPassword()))
+                .setUsername("New User")
+                .setRole(Role.USER);
         HoidleUser user = mapper.toEntity(requestUser);
         db.getHoidleUserRepository().save(user);
 
@@ -113,5 +112,19 @@ public class UserService implements  IUserService, UserDetailsService {
         }
 
         return new HoidleAppUserDetails(user);
+    }
+
+    @Override
+    public List<HoidleUserResponseDTO> getTop5UsersAttempts() {
+
+        List<HoidleUser> users = db.getHoidleUserRepository().findTop5Attempts();
+
+        return users.stream().map(user -> mapper.toResponseDTO(user).setEmail(null)).toList();
+    }
+
+    @Override
+    public List<HoidleUserResponseDTO> getTop5UsersLongestCurrentStreak() {
+        List<HoidleUser> users = db.getHoidleUserRepository().findTop5WithLongestCurrentStreak();
+        return users.stream().map(user -> mapper.toResponseDTO(user).setEmail(null)).toList();
     }
 }

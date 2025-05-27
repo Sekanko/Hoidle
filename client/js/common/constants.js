@@ -6,7 +6,8 @@ export const sendGuessDirection = 'http://localhost:8080/game/control/guessed';
 
 export const login = 'http://localhost:8080/auth/login';
 export const registerEndpoint = 'http://localhost:8080/auth/register';
-
+export const top5AttemptsEndpoint = 'http://localhost:8080/auth/top5/attempts';
+export const top5StreakEndpoint = 'http://localhost:8080/auth/top5/streak'
 //dom
 export const input = document.getElementById("guessInput");
 export const suggestions = document.getElementById("suggestions");

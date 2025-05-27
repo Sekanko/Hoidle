@@ -12,6 +12,8 @@ import pl.sekankodev.hoidleusermanagement.model.HoidleUserRequestDTO;
 import pl.sekankodev.hoidleusermanagement.model.HoidleUserResponseDTO;
 import pl.sekankodev.hoidleusermanagement.service.IUserService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/auth/")
 @RequiredArgsConstructor
@@ -39,5 +41,15 @@ public class UserController {
     @PostMapping("login")
     public ResponseEntity<AuthenticationResponse> logInUser(@Valid @RequestBody HoidleUserRequestDTO user){
         return new ResponseEntity<>(userService.logInUser(user) , HttpStatus.OK);
+    }
+
+    @GetMapping("top5/attempts")
+    public ResponseEntity<List<HoidleUserResponseDTO>> getTop5UsersAttempts(){
+        return new ResponseEntity<>(userService.getTop5UsersAttempts(), HttpStatus.OK);
+    }
+
+    @GetMapping("top5/streak")
+    public ResponseEntity<List<HoidleUserResponseDTO>> getTop5UsersLongestCurrentStreak(){
+        return new ResponseEntity<>(userService.getTop5UsersLongestCurrentStreak(), HttpStatus.OK);
     }
 }

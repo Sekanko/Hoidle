@@ -14,7 +14,8 @@ public class UserMapper implements IUserMapper {
                 .setRole(user.getRole())
                 .setLastWin(user.getLastWin())
                 .setStreak(user.getStreak())
-                .setLongestStreak(user.getLongestStreak());
+                .setLongestStreak(user.getLongestStreak())
+                .setTodaysAttempts(user.getTodaysAttempts());
     }
     @Override
     public HoidleUser toEntity(HoidleUserRequestDTO requestDTO) {
@@ -29,6 +30,7 @@ public class UserMapper implements IUserMapper {
                 .setUsername(requestDTO.getUsername())
                 .setLastWin(requestDTO.getLastWin())
                 .setStreak(requestDTO.getStreak())
+                .setTodaysAttempts(requestDTO.getTodaysAttempts())
                 .setLongestStreak(requestDTO.getLongestStreak());
     }
 }

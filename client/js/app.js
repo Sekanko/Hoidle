@@ -6,17 +6,51 @@ import {suggestedCountry} from "./dom/suggestions.js";
 import {winFunctionality} from "./dom/win.js";
 import fitty from 'https://cdn.skypack.dev/fitty';
 import {errorProcedure} from "./dom/error.js";
-import {signIn, signUp, signOut} from "./dom/auth/sign.js";
+import {signIn, signUp, signOut} from "./api/sign.js";
 import {signing} from "./dom/auth/authView.js";
-import {sendUser} from "./dom/auth/sendUser.js";
+import {loaded, loading} from "./dom/loading.js";
+import {getAttemptsLeaderBoard, getStreakLeaderBoard} from "./api/leaderBoards.js";
+import {buildLeaderBoard} from "./dom/auth/leaderborad.js";
 
 async function main(){
   if (localStorage.getItem('token') !== null){
     const accHolder = document.querySelector("#accountHolder");
     accHolder.innerHTML = JSON.parse(localStorage.getItem('user')).username;
   }
-
+  loading('Unfortunately, due to my poor budget, which is currently 0.00$' +
+    ', I can\'t give you data any faster. Please wait, it will take around 2 minutes.');
+  let attempts = 0;
   let countries = await getCountries().catch(error => errorProcedure(error));
+  let attemptsLeaders = await getAttemptsLeaderBoard().catch(error => errorProcedure(error));
+  let streakLeaders = await getStreakLeaderBoard().catch(error => errorProcedure(error));
+
+  const leaderboardIntervalFunction = async () => {
+    attemptsLeaders = await getAttemptsLeaderBoard().catch(error => errorProcedure(error));
+    streakLeaders = await getStreakLeaderBoard().catch(error => errorProcedure(error));
+    await buildLeaderBoard(attemptsLeaders,'#attempts');
+    await buildLeaderBoard(streakLeaders, '#streak');
+  }
+
+  await leaderboardIntervalFunction();
+  setInterval(leaderboardIntervalFunction, 1000);
+
+  loaded();
+
+  const attemptsButton = document.querySelector("#attemptsButton");
+  const streakButton = document.querySelector("#streakButton");
+
+  const attemptsContainer = document.querySelector('#attempts');
+  const streakContainer = document.querySelector('#streak');
+
+  attemptsButton.addEventListener('click', () => {
+    attemptsContainer.classList.remove("hidden");
+    streakContainer.classList.add("hidden");
+  });
+
+  streakButton.addEventListener('click', () => {
+    attemptsContainer.classList.add("hidden");
+    streakContainer.classList.remove("hidden");
+  });
   countries.sort((a, b) => a.name.localeCompare(b.name));
   let guess;
 
@@ -67,6 +101,7 @@ async function main(){
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
+    attempts++;
 
     const inputValue = input.value.toLowerCase().trim();
 

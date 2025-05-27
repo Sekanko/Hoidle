@@ -23,4 +23,5 @@ public class HoidleUserRequestDTO {
     private int longestStreak;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate lastWin;
+    private int todaysAttempts;
 }

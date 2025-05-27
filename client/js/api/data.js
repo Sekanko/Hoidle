@@ -7,8 +7,6 @@ export {
 }
 
 async function getCountries() {
-  loading('Unfortunately, due to my poor budget, which is currently 0.00$' +
-    ', I can\'t give you data any faster. Please wait, it will take around 2 minutes.');
   try {
     const response = await fetch(dataAllCountries);
 
@@ -16,8 +14,8 @@ async function getCountries() {
       throw new Error("Data wasn't received");
     }
     return await response.json();
-  } finally {
-    loaded();
+  } catch (error) {
+    throw error;
   }
 }
 

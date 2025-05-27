@@ -1,4 +1,4 @@
-import {login, registerEndpoint,} from "../../common/constants.js";
+import {login, registerEndpoint,} from "../common/constants.js";
 import {sendUser} from "./sendUser.js";
 export async function signIn(email, password) {
   const response = await sendUser(email, password, login);
