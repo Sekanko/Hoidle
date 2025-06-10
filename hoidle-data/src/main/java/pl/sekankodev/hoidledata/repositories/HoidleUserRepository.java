@@ -13,6 +13,6 @@ public interface HoidleUserRepository extends JpaRepository<HoidleUser, Long> {
     @Query("SELECT u FROM HoidleUser u WHERE u.todaysAttempts != 0 ORDER BY u.todaysAttempts LIMIT 5")
     List<HoidleUser> findTop5Attempts();
 
-    @Query("SELECT u FROM HoidleUser u ORDER BY u.streak DESC LIMIT 5")
+    @Query("SELECT u FROM HoidleUser u where u.streak != 0 ORDER BY u.streak DESC LIMIT 5")
     List<HoidleUser> findTop5WithLongestCurrentStreak();
 }

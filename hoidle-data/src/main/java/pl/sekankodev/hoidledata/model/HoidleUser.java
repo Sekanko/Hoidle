@@ -2,7 +2,6 @@ package pl.sekankodev.hoidledata.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Value;
 import lombok.experimental.Accessors;
 
 import java.time.LocalDate;

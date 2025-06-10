@@ -5,11 +5,6 @@ import org.junit.jupiter.api.Test;
 import pl.sekankodev.hoidledataupdater.parsers.CSVParser;
 import pl.sekankodev.hoidledataupdater.update_exceptions.CouldNotParseException;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CSVParserTest {

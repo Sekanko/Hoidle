@@ -5,13 +5,22 @@ export function signing(type, functionToCall) {
   const instance = basicLightbox.create(`
   <div id="authForm">
       <h2>${type}</h2>
-      <input type="text" placeholder="email" id="email">
-      <input type="password" placeholder="Password" id="password">
-      ${isRegister ? '<input type="password" placeholder="Confirm password" id="confirmPassword">' : ''}
+      <input type="text" placeholder="email" id="email" required>
+      <input type="password" placeholder="Password" id="password" required>
+      ${isRegister ? '<input type="password" placeholder="Confirm password" id="confirmPassword" required>' : ''}
       <button id="submit" class="hoiButton">${type}</button>
       <button id="authCancel" class="hoiButton">Go back</button>
     </div>
-  `);
+  `,
+    {
+      onShow: (instance) => {
+        document.body.style.overflow = "hidden";
+      },
+      onClose: (instance) => {
+        document.body.style.overflow = "";
+      }
+    }
+  );
 
   instance.show();
 
@@ -22,22 +31,27 @@ export function signing(type, functionToCall) {
   submit.addEventListener('click', () => {
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password').value;
+    const authForm = document.querySelector('#authForm');
 
     if (isRegister) {
       const confirmPassword = document.querySelector('#confirmPassword').value;
       if (password !== confirmPassword){
-        throw new Error('Passwords do not match');
+        authForm.prepend(errorContainer('Passwords do not match'));
+        return;
       }
     }
 
-    loading("Logging in ...");
-
+    if (isRegister){
+      loading('Singing up ...');
+    } else {
+      loading("Logging in ...");
+    }
     functionToCall(email, password)
       .then(() => {
         location.reload();
       })
       .catch(error => {
-        const authForm = document.querySelector('#authForm');
+        console.log(error)
         if (error.status === 401){
           authForm.prepend(errorContainer('Wrong credentials. Please try again.'));
         } else {

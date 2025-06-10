@@ -1,5 +1,4 @@
 import {dataAllCountries, sendGuessDirection} from "../common/constants.js";
-import {loaded, loading} from "../dom/loading.js";
 
 export {
   getCountries,

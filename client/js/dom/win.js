@@ -1,8 +1,9 @@
 import {form} from "../common/constants.js";
 import {waitForAnimationEnd} from "../functions/wait_for_animation.js";
 import {errorProcedure} from "./error.js";
+import {updateUser} from "../api/updateUser.js";
 
-export async function winFunctionality() {
+export async function winFunctionality(attempts) {
   let allElementsInForm = Array.from(form.querySelectorAll("*"));
   allElementsInForm = allElementsInForm.filter(el => !el.classList.contains('suggestions'));
 
@@ -38,4 +39,35 @@ export async function winFunctionality() {
         `;
   article.style.marginTop = `${finalArticleTopMargin}px`;
   form.appendChild(div);
+
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const today = `${year}-${month}-${day}`;
+
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (user === null){
+    return;
+  }
+
+  if (user.lastWin !== today){
+    user.todaysAttempts = attempts;
+    user.streak += 1;
+    user.lastWin = today;
+    user.longestStreak = Math.max(user.longestStreak, user.streak);
+    let cloneUser = Object.assign({}, user);
+
+    try {
+      await updateUser(cloneUser);
+      localStorage.setItem('user', JSON.stringify(user));
+    } catch (err){
+      errorProcedure(err);
+    }
+  } else {
+    const instance = basicLightbox.create(`
+      <div class="info">You have already played today, so data will not be updated</div>
+    `)
+    instance.show();
+  }
 }

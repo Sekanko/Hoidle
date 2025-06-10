@@ -7,11 +7,9 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import javax.crypto.SecretKey;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
-import javax.crypto.KeyGenerator;
+import pl.sekankodev.hoidledata.model.Role;
 
+import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,8 +31,10 @@ public class JWTService {
 //        }
 //    }
 
-    public String generateToken(String email){
+    public String generateToken(String email, Role role){
         Map<String, Object> claims = new HashMap<>();
+        claims.put("role", "ROLE_" + role.name());
+
 
         return Jwts.builder()
                 .claims()
@@ -83,4 +83,13 @@ public class JWTService {
     private Date extractExpiration(String token) {
         return extractClaims(token, Claims::getExpiration);
     }
+    public String extractRole(String token) {
+        String role = extractAllClaims(token).get("role", String.class);
+        if (role == null || role.trim().isEmpty()) {
+            throw new IllegalStateException("Token does not contain a valid role");
+        }
+        return role;
+    }
+
+
 }

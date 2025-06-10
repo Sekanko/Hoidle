@@ -40,7 +40,7 @@ function prepareFieldForDisplay(field){
 
 
 function prepareValue(value){
-  let returnValue = String(value);
+  let returnValue = String(value).replace(/([a-z])([A-Z])/g, '$1 $2') ;
   returnValue = returnValue.trim().replaceAll('_',' ').toLowerCase();
   returnValue = returnValue.split(" ")
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))

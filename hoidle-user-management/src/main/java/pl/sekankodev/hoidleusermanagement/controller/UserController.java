@@ -1,11 +1,9 @@
 package pl.sekankodev.hoidleusermanagement.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
 import pl.sekankodev.hoidleusermanagement.model.AuthenticationResponse;
 import pl.sekankodev.hoidleusermanagement.model.HoidleUserRequestDTO;

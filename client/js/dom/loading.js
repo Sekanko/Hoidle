@@ -25,6 +25,9 @@ function loading(message = "Loading...") {
 
 function loaded() {
   const loading = document.querySelector(".loadingContainer");
+  if (loading === null){
+    return
+  }
   const blackout = document.querySelector(".blackout");
   loading.remove();
   blackout.remove();

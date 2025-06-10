@@ -9,7 +9,8 @@ import pl.sekankodev.hoidleusermanagement.model.AuthenticationResponse;
 import pl.sekankodev.hoidleusermanagement.model.HoidleUserRequestDTO;
 import pl.sekankodev.hoidleusermanagement.service.IUserService;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

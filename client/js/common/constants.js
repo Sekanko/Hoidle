@@ -1,13 +1,14 @@
 //api
-export const dataAllCountries = 'http://localhost:8080/data/allCountries';
-export const sendGuessDirection = 'http://localhost:8080/game/control/guessed';
-// export const dataAllCountries = 'https://hoidle-1-1-0-latest.onrender.com/data/allCountries';
-// export const sendGuessDirection = 'https://hoidle-1-1-0-latest.onrender.com/game/control/guessed';
+const http = 'http://localhost:8080/';
+export const dataAllCountries = http + 'data/allCountries';
+export const sendGuessDirection = http + 'game/control/guessed';
+export const login = http + 'auth/login';
+export const registerEndpoint = http + 'auth/register';
+export const top5AttemptsEndpoint = http + 'auth/top5/attempts';
+export const top5StreakEndpoint = http + 'auth/top5/streak';
+export const updateEndpoint = http + 'auth/update';
+export const todaysCountryEndpoint = http + 'game/control/dayCountryOfTheDay';
 
-export const login = 'http://localhost:8080/auth/login';
-export const registerEndpoint = 'http://localhost:8080/auth/register';
-export const top5AttemptsEndpoint = 'http://localhost:8080/auth/top5/attempts';
-export const top5StreakEndpoint = 'http://localhost:8080/auth/top5/streak'
 //dom
 export const input = document.getElementById("guessInput");
 export const suggestions = document.getElementById("suggestions");

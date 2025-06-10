@@ -1,11 +1,22 @@
+import {loaded} from "./loading.js";
+
 export function errorProcedure(error){
-  const article = document.querySelector("article");
+  loaded();
+  if (document.querySelector('.error') !== null){
+    return;
+  }
 
-  article.innerHTML = '';
-
-  const errorContainer = document.createElement('div');
-  errorContainer.className = 'error';
-  errorContainer.innerHTML = `${error.message}`
-
-  article.append(errorContainer);
+  const instance = basicLightbox.create(`
+    <div class="error"> ${error.message} Please try again.</div>
+  `,
+    {
+      closable: false,
+      onShow: (instance) => {
+        document.body.style.overflow = "hidden";
+      },
+      onClose: (instance) => {
+        document.body.style.overflow = "";
+      }
+    });
+  instance.show();
 }

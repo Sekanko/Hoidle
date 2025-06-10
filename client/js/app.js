@@ -1,4 +1,4 @@
-import {form, guesses, input, registerEndpoint, submitEvent} from "./common/constants.js";
+import {form, guesses, input, submitEvent} from "./common/constants.js";
 import {getCountries, sendGuess} from "./api/data.js";
 import {createGuessRow, setSlideHeight} from "./dom/guess_table.js";
 import {waitForAnimationEnd} from "./functions/wait_for_animation.js";
@@ -6,11 +6,12 @@ import {suggestedCountry} from "./dom/suggestions.js";
 import {winFunctionality} from "./dom/win.js";
 import fitty from 'https://cdn.skypack.dev/fitty';
 import {errorProcedure} from "./dom/error.js";
-import {signIn, signUp, signOut} from "./api/sign.js";
+import {signIn, signOut, signUp} from "./api/sign.js";
 import {signing} from "./dom/auth/authView.js";
 import {loaded, loading} from "./dom/loading.js";
 import {getAttemptsLeaderBoard, getStreakLeaderBoard} from "./api/leaderBoards.js";
 import {buildLeaderBoard} from "./dom/auth/leaderborad.js";
+import {showUserDetails} from "./dom/auth/accountDetailsView.js";
 
 async function main(){
   if (localStorage.getItem('token') !== null){
@@ -25,14 +26,20 @@ async function main(){
   let streakLeaders = await getStreakLeaderBoard().catch(error => errorProcedure(error));
 
   const leaderboardIntervalFunction = async () => {
-    attemptsLeaders = await getAttemptsLeaderBoard().catch(error => errorProcedure(error));
-    streakLeaders = await getStreakLeaderBoard().catch(error => errorProcedure(error));
-    await buildLeaderBoard(attemptsLeaders,'#attempts');
-    await buildLeaderBoard(streakLeaders, '#streak');
+    try {
+      attemptsLeaders = await getAttemptsLeaderBoard();
+      streakLeaders = await getStreakLeaderBoard();
+      await buildLeaderBoard(attemptsLeaders,'#attempts');
+      await buildLeaderBoard(streakLeaders, '#streak');
+    } catch (err) {
+      errorProcedure(err);
+    }
   }
 
   await leaderboardIntervalFunction();
   setInterval(leaderboardIntervalFunction, 1000);
+
+
 
   loaded();
 
@@ -67,6 +74,13 @@ async function main(){
         location.reload();
       });
 
+      const detailsButton = document.querySelector("#details");
+      if (!detailsButton.dataset.listenerAttached){
+        detailsButton.addEventListener('click', () => {
+          showUserDetails();
+        });
+        detailsButton.dataset.listenerAttached = "true";
+      }
     } else {
         const signList = document.querySelector("#signList");
         signList.classList.toggle("hidden");
@@ -101,7 +115,6 @@ async function main(){
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    attempts++;
 
     const inputValue = input.value.toLowerCase().trim();
 
@@ -117,6 +130,7 @@ async function main(){
     if (!countries.includes(guess)){
       return;
     }
+    attempts++;
 
     const tbody = document.querySelector("#guesses tbody");
     const hasRows = tbody.querySelectorAll("tr").length !== 0;
@@ -145,7 +159,7 @@ async function main(){
     guess = ''
 
     if (fieldColorsAsResult.every(color => color === "green")){
-      await winFunctionality().catch(error => errorProcedure(error));
+      await winFunctionality(attempts).catch(error => errorProcedure(error));
     }
   });
 }

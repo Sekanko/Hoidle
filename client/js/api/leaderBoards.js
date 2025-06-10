@@ -1,4 +1,4 @@
-import { top5AttemptsEndpoint, top5StreakEndpoint } from "../common/constants.js";
+import {top5AttemptsEndpoint, top5StreakEndpoint} from "../common/constants.js";
 
 export async function getAttemptsLeaderBoard(){
   return await getAndPrepareData(top5AttemptsEndpoint, 'todaysAttempts');

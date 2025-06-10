@@ -57,10 +57,11 @@ public class UserService implements  IUserService, UserDetailsService {
             throw new UserNotFoundException();
         }
 
-        if (!encoder.matches(requestUser.getPassword(), user.getPassword())){
-            throw new AuthenticationRefusedException();
-        }
-
+//        if (!encoder.matches(requestUser.getPassword(), user.getPassword())){
+//            throw new AuthenticationRefusedException();
+//        }
+        requestUser.setPassword(null);
+        requestUser.setLongestStreak(Math.max(requestUser.getLongestStreak(), requestUser.getStreak()));
         HoidleUser updatedUser = mapper.toEntity(requestUser, user);
         db.getHoidleUserRepository().save(updatedUser);
 
@@ -96,7 +97,7 @@ public class UserService implements  IUserService, UserDetailsService {
 
             return new AuthenticationResponse()
                     .setUser(mapper.toResponseDTO(user))
-                    .setToken(JWTService.generateToken(user.getEmail()));
+                    .setToken(JWTService.generateToken(user.getEmail(), user.getRole()));
 
         } catch (AuthenticationException e) {
             throw new AuthenticationRefusedException();
@@ -127,4 +128,5 @@ public class UserService implements  IUserService, UserDetailsService {
         List<HoidleUser> users = db.getHoidleUserRepository().findTop5WithLongestCurrentStreak();
         return users.stream().map(user -> mapper.toResponseDTO(user).setEmail(null)).toList();
     }
+
 }

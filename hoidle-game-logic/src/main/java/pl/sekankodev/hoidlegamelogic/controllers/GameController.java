@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("game/control/")
 @RequiredArgsConstructor
+@CrossOrigin
 public class GameController {
     private final IServiceCatalog serviceCatalog;
 

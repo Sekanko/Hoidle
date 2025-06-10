@@ -25,7 +25,7 @@ public class UserMapper implements IUserMapper {
     @Override
     public HoidleUser toEntity(HoidleUserRequestDTO requestDTO, HoidleUser user) {
         return user.setEmail(requestDTO.getEmail())
-                .setPassword(requestDTO.getPassword())
+                .setPassword(requestDTO.getPassword() == null ? user.getPassword() : requestDTO.getPassword())
                 .setRole(requestDTO.getRole())
                 .setUsername(requestDTO.getUsername())
                 .setLastWin(requestDTO.getLastWin())

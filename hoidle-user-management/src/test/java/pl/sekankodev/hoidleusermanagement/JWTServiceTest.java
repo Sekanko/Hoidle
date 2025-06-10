@@ -10,7 +10,6 @@ import pl.sekankodev.hoidledata.model.HoidleUser;
 import pl.sekankodev.hoidleusermanagement.model.HoidleAppUserDetails;
 import pl.sekankodev.hoidleusermanagement.service.JWTService;
 
-import javax.crypto.SecretKey;
 import java.lang.reflect.Field;
 
 import static org.junit.jupiter.api.Assertions.*;
