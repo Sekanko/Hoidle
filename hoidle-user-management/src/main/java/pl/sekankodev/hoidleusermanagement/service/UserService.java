@@ -22,6 +22,8 @@ import pl.sekankodev.hoidleusermanagement.user_exceptions.AuthenticationRefusedE
 import pl.sekankodev.hoidleusermanagement.user_exceptions.UserAlreadyRegisteredException;
 import pl.sekankodev.hoidleusermanagement.user_exceptions.UserNotFoundException;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
@@ -117,14 +119,30 @@ public class UserService implements  IUserService, UserDetailsService {
 
     @Override
     public List<HoidleUserResponseDTO> getTop5UsersAttempts() {
+        if (db.getHoidleDailyCountryRepository().findByDate(LocalDate.now()) == null){
+            var users = db.getHoidleUserRepository().findAll();
+            users.forEach(u -> u.setTodaysAttempts(0));
+            db.getHoidleUserRepository().saveAll(users);
+        }
 
         List<HoidleUser> users = db.getHoidleUserRepository().findTop5Attempts();
-
         return users.stream().map(user -> mapper.toResponseDTO(user).setEmail(null)).toList();
     }
 
     @Override
     public List<HoidleUserResponseDTO> getTop5UsersLongestCurrentStreak() {
+        LocalDate today = LocalDate.now();
+        if (db.getHoidleDailyCountryRepository().findByDate(today) == null){
+            var users = db.getHoidleUserRepository().findAll();
+            users.forEach(u -> {
+                LocalDate lastWin = u.getLastWin();
+                if (lastWin == null || ChronoUnit.DAYS.between(lastWin, today) > 1) {
+                    u.setStreak(0);
+                }
+            });
+            db.getHoidleUserRepository().saveAll(users);
+        }
+
         List<HoidleUser> users = db.getHoidleUserRepository().findTop5WithLongestCurrentStreak();
         return users.stream().map(user -> mapper.toResponseDTO(user).setEmail(null)).toList();
     }

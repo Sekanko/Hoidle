@@ -1,5 +1,7 @@
 //api
 const http = 'http://localhost:8080/';
+// const http = 'https://hoidle.onrender.com/';
+// const http = 'https://hoidle-tin.onrender.com/';
 export const dataAllCountries = http + 'data/allCountries';
 export const sendGuessDirection = http + 'game/control/guessed';
 export const login = http + 'auth/login';

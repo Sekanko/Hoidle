@@ -37,9 +37,7 @@ async function main(){
   }
 
   await leaderboardIntervalFunction();
-  setInterval(leaderboardIntervalFunction, 1000);
-
-
+  setInterval(leaderboardIntervalFunction, 30000);
 
   loaded();
 
