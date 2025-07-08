@@ -9,16 +9,6 @@ it uses **Hearts of Iron IV (HOI4) countries**.
 - You will be given a series of clues related to a country.
 - Your goal is to guess the country based on these clues.
 
-  
-### 🏷 Current Version 
-
-Currently, the project contains only **"Classic Mode"** but I plan to add more modes in the future.
-
-### 🕰 Plans for the nearest future 
-- Accounts with personal statistics
-- Guess from border shape mode
-- Save your today's guesses
-
 **_Now feel free to [check it out](https://hoidle.netlify.app/)!_**
 
 ## ⚙️ Technicals 
@@ -31,12 +21,7 @@ Currently, the project contains only **"Classic Mode"** but I plan to add more m
 
 
 ### 🧱Build Instructions
-### ❗ Important ❗
 
-#### The building instructions will be updated in July
-
-You may need to run the main application file once before running anything else; otherwise, it might not work.
-At least, it worked for me this way
 1. Clone the repository
 2. In the Client module you should see constants.js
 
@@ -45,16 +30,18 @@ At least, it worked for me this way
 where are the lines
 
 ```javascript
-const dataAllCountries = 'http://localhost:8080/data/allCountries';
-const sendGuessDirection = 'http://localhost:8080/game/control/guessed';
-// const dataAllCountries = 'https://hoidle-1-1-0-latest.onrender.com/data/allCountries';
-// const sendGuessDirection = 'https://hoidle-1-1-0-latest.onrender.com/game/control/guessed';
+const http = 'http://localhost:8080/';
+// const http = 'https://hoidle.onrender.com/';
 ```
-If you want to test it using my hosted backend, comment and uncomment proper lines
-to use the onrender.com link and jump to the `🔗 Application Page` part.
+If you want to test it using my hosted backend, change the code above to this:
+```javascript
+// const http = 'http://localhost:8080/';
+const http = 'https://hoidle.onrender.com/';
+```
+and jump to the `🔗 Application Page` part.
 
 **Although be aware that it is slow because I only use free
-services for my hobby. Also my host runs the latest stable version**
+services for my hobby. Also, my host runs the latest stable version**
 
 Otherwise, set these constants to point to localhost 
 (as it is in example) and follow down the instructions.
@@ -74,7 +61,7 @@ JWT_SECRET=your super secret key - it has to be strong enough
 > DATABASE_USER=data_manager
 > DATABASE_PASSWORD=123
 > DATABASE_URL=postgresql://host.docker.internal:5432/my_db
-> JWT_SECRET=OMzOz4adL0021312v/GB4Me7RQPaoeztFqxIdyF8/eK+avQ=
+> JWT_SECRET=OMzOz0AdL0021216v/GB4Me7RQPaoeztFqxIdyF8/eK+avQ=
 > ```
 
 5. Run HoidleApplication
@@ -89,34 +76,13 @@ _Thanks to my friend Filip for creating and sharing this file_
 
 Please open `index.html` from **Client** module and enjoy the game!
 
-### 🔍 Tests
-
-To perform unit tests, you have to separately run all tests in each module.
-
-For **Client** tests I used `jest`, so you need to go to this
-module in your console and run `npm install --save-dev jest
- ` and then `npm test`.
-
-If you don't have `npm` installed, you won't be able to run client-side tests.
-
 ## 💬 My comment
 **Hoidle** is an idea that my friend Filip and I came up with
-after playing **Loldle** a lot. It's my first project that I really 
-see as something public, something people can play. I know there's still 
-a lot to do, but I'm ready to take on the challenge.
+after playing **Loldle** a lot.
 
-While working on it, I truly enjoyed learning more about 
-JavaScript – up to now, I'd only used it for basic animations.
-After completing `classic mode` for **Hoidle** I must say it's been and is
-a great and fun experience.
-
-Last but not the least, I've learned a lesson about testing.
-Creating unit tests seemed really easy at first, but when 
-it came to reality, sometimes tests passed but functionalities 
-were far from intended. At the end of the day because of
-them, I was able to catch subtle bugs and improve the code right away.
-
-Anyway, I'm willing to continue working on **Hoidle** as soon as possible,
-and I can't wait to see how far I can take this project.
+It's my first project that I made for myself, and I'm really happy with the
+result. After completing the first game mode, I decided to move on and learn
+more technologies to improve quality of this project. I'm going to leave it as
+it is and make a new one from scratch.
 
 ## 🙏 Thank you for your time!
