@@ -16,6 +16,7 @@ import pl.sekankodev.hoidlegamelogic.modelDto.Hoi4CountryDTO;
 import pl.sekankodev.hoidlegamelogic.modelDto.HoidleDailyCountryDTO;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -84,11 +85,12 @@ public class GameService implements IGameService {
 
     @Override
     public HoidleDailyCountryDTO getOrSetTodaysCountry() {
-        var todaysCountry = db.getHoidleDailyCountryRepository().findByDate(LocalDate.now());
+        LocalDate today = LocalDate.now(ZoneId.of("Europe/Warsaw"));
+        var todaysCountry = db.getHoidleDailyCountryRepository().findByDate(today);
 
         if (todaysCountry == null) {
             todaysCountry = new HoidleDailyCountry();
-            todaysCountry.setDate(LocalDate.now());
+            todaysCountry.setDate(today);
             var randomHoi4Country = db.getHoi4CountryRepository().getRandomCountry();
 
             if (randomHoi4Country == null) {

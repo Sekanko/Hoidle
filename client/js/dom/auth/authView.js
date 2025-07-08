@@ -51,7 +51,6 @@ export function signing(type, functionToCall) {
         location.reload();
       })
       .catch(error => {
-        console.log(error)
         if (error.status === 401){
           authForm.prepend(errorContainer('Wrong credentials. Please try again.'));
         } else {

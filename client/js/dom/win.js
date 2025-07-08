@@ -18,9 +18,6 @@ export async function winFunctionality(attempts) {
   const finalDivHeight = form.offsetHeight + topMargin / 2;
   const finalArticleTopMargin = topMargin / 2;
 
-  console.log(finalDivHeight);
-  console.log(finalArticleTopMargin);
-
   for (const element of allElementsInForm) {
     if (element.tagName === 'UL') {
       element.remove();
@@ -43,10 +40,16 @@ export async function winFunctionality(attempts) {
   article.style.marginTop = `${finalArticleTopMargin}px`;
   form.appendChild(div);
 
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
+  const formatter = new Intl.DateTimeFormat('sv-SE', {
+    timeZone: 'Europe/Warsaw',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+  const parts = formatter.formatToParts(new Date());
+  const year = parts.find(p => p.type === 'year').value;
+  const month = parts.find(p => p.type === 'month').value;
+  const day = parts.find(p => p.type === 'day').value;
   const today = `${year}-${month}-${day}`;
 
   const user = JSON.parse(localStorage.getItem('user'));

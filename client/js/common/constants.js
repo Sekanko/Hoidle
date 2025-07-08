@@ -1,7 +1,6 @@
 //api
 const http = 'http://localhost:8080/';
 // const http = 'https://hoidle.onrender.com/';
-// const http = 'https://hoidle-tin.onrender.com/';
 export const dataAllCountries = http + 'data/allCountries';
 export const sendGuessDirection = http + 'game/control/guessed';
 export const login = http + 'auth/login';
@@ -10,6 +9,7 @@ export const top5AttemptsEndpoint = http + 'auth/top5/attempts';
 export const top5StreakEndpoint = http + 'auth/top5/streak';
 export const updateEndpoint = http + 'auth/update';
 export const todaysCountryEndpoint = http + 'game/control/dayCountryOfTheDay';
+export const userInfoEndpoint = http + 'auth/userInfo';
 
 //dom
 export const input = document.getElementById("guessInput");

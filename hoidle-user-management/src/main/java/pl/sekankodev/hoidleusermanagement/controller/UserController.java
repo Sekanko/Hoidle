@@ -50,4 +50,9 @@ public class UserController {
     public ResponseEntity<List<HoidleUserResponseDTO>> getTop5UsersLongestCurrentStreak(){
         return new ResponseEntity<>(userService.getTop5UsersLongestCurrentStreak(), HttpStatus.OK);
     }
+
+    @PostMapping("userInfo")
+    public  ResponseEntity<HoidleUserResponseDTO> getUserInfo(@RequestBody String token){
+        return new ResponseEntity<>(userService.getUserInfo(token), HttpStatus.OK);
+    }
 }

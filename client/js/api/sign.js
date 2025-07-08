@@ -3,7 +3,6 @@ import {sendUser} from "./sendUser.js";
 
 export async function signIn(email, password) {
   const response = await sendUser(email, password, login);
-  console.log(response);
 
   const json = await response.json();
   const user = json.user;

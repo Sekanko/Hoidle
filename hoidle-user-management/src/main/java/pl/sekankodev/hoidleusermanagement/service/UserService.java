@@ -23,6 +23,7 @@ import pl.sekankodev.hoidleusermanagement.user_exceptions.UserAlreadyRegisteredE
 import pl.sekankodev.hoidleusermanagement.user_exceptions.UserNotFoundException;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -119,7 +120,8 @@ public class UserService implements  IUserService, UserDetailsService {
 
     @Override
     public List<HoidleUserResponseDTO> getTop5UsersAttempts() {
-        if (db.getHoidleDailyCountryRepository().findByDate(LocalDate.now()) == null){
+        LocalDate today = LocalDate.now(ZoneId.of("Europe/Warsaw"));
+        if (db.getHoidleDailyCountryRepository().findByDate(today) == null){
             var users = db.getHoidleUserRepository().findAll();
             users.forEach(u -> u.setTodaysAttempts(0));
             db.getHoidleUserRepository().saveAll(users);
@@ -131,7 +133,7 @@ public class UserService implements  IUserService, UserDetailsService {
 
     @Override
     public List<HoidleUserResponseDTO> getTop5UsersLongestCurrentStreak() {
-        LocalDate today = LocalDate.now();
+        LocalDate today = LocalDate.now(ZoneId.of("Europe/Warsaw"));
         if (db.getHoidleDailyCountryRepository().findByDate(today) == null){
             var users = db.getHoidleUserRepository().findAll();
             users.forEach(u -> {
@@ -145,6 +147,16 @@ public class UserService implements  IUserService, UserDetailsService {
 
         List<HoidleUser> users = db.getHoidleUserRepository().findTop5WithLongestCurrentStreak();
         return users.stream().map(user -> mapper.toResponseDTO(user).setEmail(null)).toList();
+    }
+
+    @Override
+    public HoidleUserResponseDTO getUserInfo(String token) {
+        String email = JWTService.extractUsername(token);
+        HoidleUser user = db.getHoidleUserRepository().findByEmail(email);
+        if (user == null){
+            throw new UserNotFoundException();
+        }
+        return mapper.toResponseDTO(user);
     }
 
 }

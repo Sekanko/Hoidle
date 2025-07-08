@@ -14,4 +14,6 @@ public interface IUserService {
 
     List<HoidleUserResponseDTO> getTop5UsersAttempts();
     List<HoidleUserResponseDTO> getTop5UsersLongestCurrentStreak();
+
+    HoidleUserResponseDTO getUserInfo(String token);
 }

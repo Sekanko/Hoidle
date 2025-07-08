@@ -1,4 +1,5 @@
 import {loaded} from "./loading.js";
+import {signOut} from "../api/sign.js";
 
 export function errorProcedure(error){
   loaded();
@@ -7,7 +8,10 @@ export function errorProcedure(error){
   }
 
   const instance = basicLightbox.create(`
-    <div class="error"> ${error.message} Please try again.</div>
+    <div class="error">
+        ${error.message} Please try again or&nbsp;
+        <u id="reset" style="cursor: pointer">reset data</u>
+    </div>
   `,
     {
       closable: false,
@@ -19,4 +23,7 @@ export function errorProcedure(error){
       }
     });
   instance.show();
+  document.querySelector('#reset').addEventListener('click',()=> {
+    signOut();
+  });
 }

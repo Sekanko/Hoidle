@@ -12,14 +12,18 @@ import {loaded, loading} from "./dom/loading.js";
 import {getAttemptsLeaderBoard, getStreakLeaderBoard} from "./api/leaderBoards.js";
 import {buildLeaderBoard} from "./dom/auth/leaderborad.js";
 import {showUserDetails} from "./dom/auth/accountDetailsView.js";
+import {getUserInfo} from "./api/userInfo.js";
 
 async function main(){
-  if (localStorage.getItem('token') !== null){
-    const accHolder = document.querySelector("#accountHolder");
-    accHolder.innerHTML = JSON.parse(localStorage.getItem('user')).username;
-  }
   loading('Unfortunately, due to my poor budget, which is currently 0.00$' +
     ', I can\'t give you data any faster. Please wait, it will take around 2 minutes.');
+  if (localStorage.getItem('token') !== null){
+    const accHolder = document.querySelector("#accountHolder");
+    const user = await getUserInfo().catch(error => errorProcedure(error));
+    accHolder.innerHTML = user.username;
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
   let attempts = 0;
   let countries = await getCountries().catch(error => errorProcedure(error));
   let attemptsLeaders = await getAttemptsLeaderBoard().catch(error => errorProcedure(error));
@@ -40,7 +44,6 @@ async function main(){
   setInterval(leaderboardIntervalFunction, 30000);
 
   loaded();
-
   const attemptsButton = document.querySelector("#attemptsButton");
   const streakButton = document.querySelector("#streakButton");
 
